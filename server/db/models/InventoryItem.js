@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Item = db.define('item', {
+const InventoryItem = db.define('item', {
   itemName: {
     type: Sequelize.STRING,
     allowNull: false
@@ -19,4 +19,10 @@ const Item = db.define('item', {
   }
 })
 
-module.exports = Item
+//Instance and Prototype Methods
+
+//Get all items, to support All Items Component.
+
+//Get Item By ID, to support Single Item Component.
+
+module.exports = InventoryItem
