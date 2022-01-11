@@ -20,7 +20,7 @@ const SingleProduct = (props) => {
     })
 
     const addToCart = () => {
-
+        
     }
 
     return (
