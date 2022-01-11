@@ -11,6 +11,7 @@ export const setCart = (item) => {
 
 const initialState = [];
 /*  here is an example of what a cart array will look like when it isn't empty
+//this may not be a very good format for our cart becuse it has so much nesting and when we try to copy it we will only make shallow copied of that
 [
     {
         product:{
