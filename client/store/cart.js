@@ -1,65 +1,95 @@
 import axios from "axios";
+//helpful ideas in this article: https://dev.to/aneeqakhan/building-shopping-cart-actions-and-reducers-with-redux-in5
+//the only thing I don't like about their approach is that their "cart" includes ALL possible products (regardless of whether they're in the cart).  each product has a property "is selected"  i think that makes the cart needlessly large.  I think the cart array should only include items that are in the cart
 
-const SET_CART = "SET_CART";
+//action types
+// const SET_CART="SET_CART"
+const ADD_ITEM = "ADD_ITEM";
+const INCREMENT_ITEM = "INCREMENT_ITEM";
+//we should also add decrement item, remove item, &empty cart
 
-export const setCart = (item) => {
+//action creators
+// export const setCart = (item) => {
+//     return {
+//       type: SET_CART,
+//       item,
+//     };
+//   };
+
+//this assumes the app will never try to add an item to the cart that is already in the cart.  there should be a check for that in the component before this result of this action creator is dispatched.
+export const addItem = (item) => {
   return {
-    type: SET_CART,
+    type: ADD_ITEM,
     item,
   };
 };
 
+export const incrementItem = (item) => {
+  return {
+    type: INCREMENT_ITEM,
+    item,
+  };
+};
+
+//if the component is not able to pass the item object to the action creator then we could use a thunk to get the item object from the database, but I don't think that will be needed.
+
 const initialState = [];
-/*  here is an example of what a cart array will look like when it isn't empty
-//this may not be a very good format for our cart becuse it has so much nesting and when we try to copy it we will only make shallow copied of that
+/*
+here is an example of what a cart array will look like when it isn't empty.
+it only includes products that have been added to the cart.
 [
     {
-        product:{
-            id:,
-            name:,
-            etc...
-        },
+        id:,
+        name:,
+        etc...,
         qty:1
     },
     {
-        product:{
-            id:,
-            name:,
-            etc...
-        },
+        id:,
+        name:,
+        etc...,
         qty:2
-    },
+    }
 ]
 */
-//takes an item (a product object) and a cart (an array that )
-// if the cart has the item it returns the index of that item in the cart +1 (this ensures a truthy result even if its at indix 0).
-//if the cart doesn't have the itme it returns false .
-const cartHasItem = (item, cart) => {
-  for (i = 0; i < cart.length; i++) {
-    if (cart[i].product.id === item.id) {
-      return i + 1;
-    }
-  }
-  return false;
-};
+
+//reducer
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_CART:
-      const hasItem = cartHasItem(action.item, state);
-      if (hasItem) {
-        //if the cart already has an object with a product property===action.item then increment the qty of that object.
-        const cartItemIdx = hasItem - 1;
-        const newCartItem = { ...state[cartItemIdx] };
-        newCartItem.qty++;
-        //the new cart will be all the items in the cart that weren't modified (everything before and after the modified item, and then the new version of the itme which has been incrememented)
-        return [
-          ...state.slice(0, cartItemIdx),
-          ...state.slice(cartItemIdx + 1),
-          newCartItem,
-        ];
-      }
-      //if the cart doesn't have an object with product property===action.item then add that item to the cart with a qty of 1.
-      return [...state, { product: action.item, qty: 1 }];
+    // case SET_CART:
+    //   //loop through the existing cart and determining if the action.item is already in the cart
+    //   const hasItem = false;
+    //   for (i = 0; i < state.length; i++) {
+    //     if (state[i].id === action.item.id) {
+    //       hasItem = true;
+    //     }
+    //   }
+    //   if (hasItem) {
+    //     //if the cart already includes the action.item then increment its qty
+    //     return state.map((item) => {
+    //       let newItem = { ...item }; //make a copy of the item so we don't leave side effects on the old item in the previous state.
+    //       if (item.id === action.type.item.id) {
+    //         newItem.qty++;
+    //       }
+    //       return newItem;
+    //     });
+    //   }
+    //   //if the cart doesn't have the matches the action.item then add it to the cart with a qty of 1.
+    //   let newItem = { ...action.item }; //I'm taking care to make a copy of the item so we don't leave side effects on the action.item
+    //   newItem.qty = 1;
+    //   return [...state, newItem];
+    case ADD_ITEM:
+      let newItem = { ...action.item }; //I'm taking care to make a copy of the item so we don't leave side effects on the action.item
+      newItem.qty = 1;
+      return [...state, newItem];
+    case INCREMENT_ITEM:
+      return state.map((item) => {
+        let newItem = { ...item }; //make a copy of the item so we don't leave side effects on the old item in the previous state.
+        if (item.id === action.type.item.id) {
+          newItem.qty++;
+        }
+        return newItem;
+      });
     default:
       return state;
   }
