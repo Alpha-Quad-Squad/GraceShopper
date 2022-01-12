@@ -10,10 +10,10 @@ const Purchase = require('./models/Purchase')
 //associations could go here!
 User.hasMany(ShoppingItem);
 User.hasMany(Purchase)
-ShoppingItem.hasOne(User);
+ShoppingItem.belongsTo(User);
 ShoppingItem.hasOne(InventoryItem);
 Purchase.hasMany(ShoppingItem);
-Purchase.hasOne(User);
+Purchase.belongsTo(User);
 
 
 module.exports = {
