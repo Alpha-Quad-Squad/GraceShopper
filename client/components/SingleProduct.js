@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
-import { addItem, incrementItem } from "../store/cart";
+import { addItem, incrementItem, goAddShoppingItem } from "../store/cart";
 
 let product = {
   id: 4,
@@ -29,20 +29,43 @@ const SingleProduct = (props) => {
     return state.cart;
   });
 
+  const [cartProduct] = cart.filter(item=> product.id === item.id)
+  const quantity = cartProduct.qty;
+
+  const userId = useSelector((state) => {
+    return state.auth.id
+  })
+
   const addToCart = () => {
     //check if the item is in the cart already
-    let inCart = false;
-    cart.forEach((item) => {
-      if (product.id === item.id) {
-        inCart = true;
-      }
-    });
+
+    let inCart = !!quantity;
+
+
+    // let inCart = false;
+    // cart.forEach((item) => {
+    //   if (product.id === item.id) {
+    //     inCart = true;
+    //   }
+    // });
     if (inCart) {
-      //if it in the cart, increment its qty in the store.
-      dispatch(incrementItem(product));
+      //if it in the cart, increment its qty in the store / db.
+      if (userId) {
+        //if user is logged in dispatch thunk to update db.
+        dispatch(goIncrementShoppingItem(product, userId, quantity+1))
+      } else {
+        //if not loggedIn dispatch action to update the qty in store only.
+        dispatch(incrementItem(product));
+      }
     } else {
-      //if it is not in the cart add it to the cart in the store (with qty 1)
-      dispatch(addItem(product));
+      //if it is not in the cart add it to the cart in the store / db (with qty 1)
+      if (userId) {
+        //if user is logged in dispatch thunk to update db.
+        dispatch(goAddShoppingItem(product, userId))
+      } else {
+        //if not loggedIn dispatch action to update the store only. 
+        dispatch(addItem(product));
+      }
     }
   };
 
