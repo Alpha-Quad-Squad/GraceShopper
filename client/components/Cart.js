@@ -16,6 +16,8 @@ const Cart = () => {
     return state.cart;
   });
 
+//   let r,
+
   const increment = (item) => {
     dispatch(incrementItem(item));
   };
