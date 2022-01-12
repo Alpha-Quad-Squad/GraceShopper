@@ -25,7 +25,7 @@ export const fetchSingleProduct = (productId) => {
   };
 };
 
-initialState = {};
+const initialState = {};
 
 // REDUCER
 export default (state = initialState, action) => {
