@@ -21,7 +21,7 @@ const InventoryItem = db.define('inventoryItem', {
 
 //Instance and Prototype Methods
 
-//Get all items, to support All Items Component, instance method
+// supports the /api/products/ URL
 InventoryItem.getItem = function (itemId) {
   return InventoryItem.findOne({
     where: {
@@ -31,7 +31,5 @@ InventoryItem.getItem = function (itemId) {
     }
   })
 }
-
-//Get Item By ID, to support Single Item Component, prototype method.
 
 module.exports = InventoryItem
