@@ -6,7 +6,7 @@ const ShoppingItem = db.define('shoppingCartItem', {
     type: Sequelize.INTEGER
   },
   status: {
-    type: Sequelize.ENUM('cart', 'purcahsed')
+    type: Sequelize.ENUM('cart', 'purchased')
   }
 })
 
