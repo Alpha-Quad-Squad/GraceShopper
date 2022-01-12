@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const InventoryItem = db.define('item', {
+const InventoryItem = db.define('inventoryItem', {
   itemName: {
     type: Sequelize.STRING,
     allowNull: false
@@ -21,8 +21,17 @@ const InventoryItem = db.define('item', {
 
 //Instance and Prototype Methods
 
-//Get all items, to support All Items Component.
+//Get all items, to support All Items Component, instance method
+InventoryItem.getItem = function (itemId) {
+  return InventoryItem.findOne({
+    where: {
+      id: {
+        [Sequelize.Op.eq]: itemId
+      }
+    }
+  })
+}
 
-//Get Item By ID, to support Single Item Component.
+//Get Item By ID, to support Single Item Component, prototype method.
 
 module.exports = InventoryItem

@@ -181,7 +181,7 @@ async function seed() {
   ]);
 
   console.log(`seeded ${users.length} users`);
-  console.log(`seeded ${itemItems.length} inventory items`);
+  console.log(`seeded ${InventoryItem.length} inventory items`);
   console.log(`seeded successfully`);
   return {
     users: {
