@@ -1,14 +1,6 @@
-import React, { useState } from "react";
-
-// const dummyData = {
-//   itemImage: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-//   name: 'How To Become Awesome',
-//   author: 'Mars DeMartian',
-//   price: 14.99
-// };
+import React from "react";
 
 const SingleProductSnapshot = (props) => {
-  // const [itemInfo, setItemInfo] = useState(dummyData);
 
   return (
     <div className="snapshot">
