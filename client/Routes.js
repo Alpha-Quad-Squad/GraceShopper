@@ -24,10 +24,10 @@ const Routes = () => {
       {isLoggedIn ? (
         <Switch>
           <Route path="/home" component={Home} />
-          <Redirect to="/home" />
           <Route exact path="/products/:productId" component={SingleProduct} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/products" component={ManyProducts} />
+          <Redirect to="/home" />
         </Switch>
       ) : (
         <Switch>
