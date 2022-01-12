@@ -5,6 +5,9 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store'
 
+//These were added so I can import the component and test it. -Ace
+import ManyProducts from './components/ManyProducts';
+
 /**
  * COMPONENT
  */
@@ -28,6 +31,8 @@ class Routes extends Component {
             <Route path='/' exact component={ Login } />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            {/* Added the following line this so that I can see the component while working on it. -Ace */}
+            <Route path='/many-items' component={ManyProducts} />
           </Switch>
         )}
       </div>
