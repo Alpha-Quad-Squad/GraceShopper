@@ -93,7 +93,7 @@ export default (state = [], action) => {
       ));
       return newState;
     case DELETE_INVENTORYITEM:
-      const newState = state.filter((item) => (
+      const deletedState = state.filter((item) => (
         item.id !== action.item.id
       ));
       return newState;
