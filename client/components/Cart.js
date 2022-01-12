@@ -7,6 +7,7 @@ import {
   decrementItem,
   emptyCart,
 } from "../store/cart";
+import SingleProductSnapshot from "./SingleProductSnapshot";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -41,10 +42,11 @@ const Cart = () => {
       {currentCart.map((item) => {
         return (
           <div key={item.id}>
-            <div key={item.id}>
+            <SingleProductSnapshot itemData={item} />
+            {/* <div key={item.id}>
               <img src={item.itemImageUrl} />
               {item.itemName}$ {item.itemPrice}
-            </div>
+            </div> */}
             <div>
               X {item.qty} = $ {item.qty * item.itemPrice}
             </div>
