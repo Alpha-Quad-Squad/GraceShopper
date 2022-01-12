@@ -6,6 +6,7 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import { me } from './store'
 import SingleProduct from './components/SingleProduct'
+import Cart from './components/Cart'
 
 
 const Routes = () => {
@@ -35,6 +36,7 @@ const Routes = () => {
         </Switch>
       )}
       <Route exact path="/products/:productId" component={SingleProduct}/>
+      <Route exact path="/cart" component={Cart} />
     </div>
   )
 }

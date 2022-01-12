@@ -33,6 +33,7 @@ const Navbar = () => {
             <Link to="/signup">Sign Up</Link>
           </div>
         )}
+        <Link to='/cart' >cart</Link>
       </nav>
       <hr />
     </div>
