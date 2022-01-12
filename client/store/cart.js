@@ -44,6 +44,10 @@ export const emptyCart = () => {
 
 //if the component is not able to pass the item object to the action creator then we could use a thunk to get the item object from the database, but I don't think that will be needed.
 
+//THUNK CREATORS
+//need to create thunks to create shopping items for all the action creators.
+//need a thunk for converting an existing cart of a non logged in person to a collection of shopping items in the database when that person logs in.
+
 const initialState = [];
 /*
 here is an example of what a cart array will look like when it isn't empty.
