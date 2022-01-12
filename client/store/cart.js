@@ -96,7 +96,7 @@ export default (state = initialState, action) => {
       });
       //if the qty of any item is now zero it should be filtered out of the cart
       return newState.filter((item) => {
-        item.qty;
+        return item.qty;
       });
     case EMPTY_CART:
       return [];
