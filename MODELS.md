@@ -1,13 +1,13 @@
-# Database Readme
+# Sequelize Models Readme
 
-## Tables
+## Models
 
-*Users
-*Items
-*ShoppingCartLineItems
-*Transactions
+*User
+*InventoryItem
+*ShoppingItem
+*Purchase
 
-Users
+User
 ___
 
 The `User` table is meant to represent all users, their possible permissions, and information about
@@ -17,9 +17,9 @@ them. This includes:
 - `isAdmin`: boolean, defaults to false.
 - id: (Sequelize created)
 
-Items
+InventoryItem
 ___
-The `Items` table is meant to represent all unique items in the store, along with information about
+The `InventoryItem` table is meant to represent all unique items in the store, along with information about
 the item. This includes:
 - `itemName`: string, cannot be null.
 - `itemDescription`: text.
