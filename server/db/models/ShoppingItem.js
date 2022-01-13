@@ -1,14 +1,11 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const ShoppingItem = db.define('shoppingItem', {
+const ShoppingItem = db.define("shoppingItem", {
   quantity: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
   },
-  status: {
-    type: Sequelize.ENUM('cart', 'purchased')
-  }
-})
+});
 
 //Instance and Prototype Methods.
 
@@ -25,4 +22,4 @@ const ShoppingItem = db.define('shoppingItem', {
 //Purchase item, changes status from 'cart' to 'purchased'. To support
 //checkout feature.
 
-module.exports = ShoppingItem
+module.exports = ShoppingItem;

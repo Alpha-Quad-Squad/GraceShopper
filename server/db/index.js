@@ -8,12 +8,20 @@ const ShoppingItem = require("./models/ShoppingItem");
 const Purchase = require("./models/Purchase");
 
 //associations could go here!
-User.hasMany(ShoppingItem);
+InventoryItem.belongsToMany(Purchase, {
+  through: ShoppingItem,
+  foreignKey: "inventoryItemId",
+});
+Purchase.belongsToMany(InventoryItem, {
+  through: ShoppingItem,
+  foreignKey: "purchaseId",
+});
 User.hasMany(Purchase);
-ShoppingItem.belongsTo(User);
-ShoppingItem.hasOne(InventoryItem);
-Purchase.hasMany(ShoppingItem);
 Purchase.belongsTo(User);
+//User.hasMany(ShoppingItem);
+//ShoppingItem.belongsTo(User);
+//ShoppingItem.hasOne(InventoryItem);
+//Purchase.hasMany(ShoppingItem);
 
 module.exports = {
   db,
@@ -21,5 +29,6 @@ module.exports = {
     User,
     InventoryItem,
     ShoppingItem,
+    Purchase,
   },
 };
