@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
 import { addItem, incrementItem, goAddShoppingItem } from "../store/cart";
 
-let product = {
-  id: 4,
-  itemName: "Super Great Book",
-  itemDescription: "This is the such a beautiful book by a great author",
-  itemPrice: 12.99,
-  itemImageUrl:
-    "https://purepng.com/public/uploads/large/purepng.com-booksbookillustratedwrittenprintedliteratureclipart-1421526451707uyace.png",
-};
+// let product = {
+//   id: 4,
+//   itemName: "Super Great Book",
+//   itemDescription: "This is the such a beautiful book by a great author",
+//   itemPrice: 12.99,
+//   itemImageUrl:
+//     "https://purepng.com/public/uploads/large/purepng.com-booksbookillustratedwrittenprintedliteratureclipart-1421526451707uyace.png",
+// };
 
 const SingleProduct = (props) => {
   const dispatch = useDispatch();
@@ -21,27 +21,27 @@ const SingleProduct = (props) => {
     dispatch(fetchSingleProduct(productId));
   }, []);
 
-  //   const product = useSelector((state) => {
-  //     return state.singleProduct;
-  //   });
+  const product = useSelector((state) => {
+    return state.singleProduct;
+  });
+  console.log("product in component", product);
 
   const cart = useSelector((state) => {
     return state.cart;
   });
 
-  const [cartProduct] = cart.filter(item=> product.id === item.id)
+  const [cartProduct] = cart.filter((item) => product.id === item.id);
   // const quantity = cartProduct.qty;
   //*****^^^ to be uncommented and reviewed with Liz *********
 
   const userId = useSelector((state) => {
-    return state.auth.id
-  })
+    return state.auth.id;
+  });
 
   const addToCart = () => {
     //check if the item is in the cart already
 
     let inCart = !!quantity;
-
 
     // let inCart = false;
     // cart.forEach((item) => {
@@ -53,7 +53,7 @@ const SingleProduct = (props) => {
       //if it in the cart, increment its qty in the store / db.
       if (userId) {
         //if user is logged in dispatch thunk to update db.
-        dispatch(goIncrementShoppingItem(product, userId, quantity+1))
+        dispatch(goIncrementShoppingItem(product, userId, quantity + 1));
       } else {
         //if not loggedIn dispatch action to update the qty in store only.
         dispatch(incrementItem(product));
@@ -62,9 +62,9 @@ const SingleProduct = (props) => {
       //if it is not in the cart add it to the cart in the store / db (with qty 1)
       if (userId) {
         //if user is logged in dispatch thunk to update db.
-        dispatch(goAddShoppingItem(product, userId))
+        dispatch(goAddShoppingItem(product, userId));
       } else {
-        //if not loggedIn dispatch action to update the store only. 
+        //if not loggedIn dispatch action to update the store only.
         dispatch(addItem(product));
       }
     }
