@@ -30,7 +30,8 @@ const SingleProduct = (props) => {
   });
 
   const [cartProduct] = cart.filter(item=> product.id === item.id)
-  const quantity = cartProduct.qty;
+  // const quantity = cartProduct.qty;
+  //*****^^^ to be uncommented and reviewed with Liz *********
 
   const userId = useSelector((state) => {
     return state.auth.id
