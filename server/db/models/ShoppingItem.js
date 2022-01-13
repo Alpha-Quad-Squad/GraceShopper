@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const ShoppingItem = db.define('shoppingCartItem', {
+const ShoppingItem = db.define('shoppingItem', {
   quantity: {
     type: Sequelize.INTEGER
   },
   status: {
-    type: Sequelize.ENUM('cart', 'purcahsed')
+    type: Sequelize.ENUM('cart', 'purchased')
   }
 })
 
