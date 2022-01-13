@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, InventoryItem },
+  models: { User, InventoryItem, ShoppingItem, Purchase },
 } = require("../server/db");
 
 /**
@@ -15,8 +15,8 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: "cody", password: "123" }),
-    User.create({ username: "murphy", password: "123" }),
+    User.create({ username: "cody", password: "123", isAdmin: false }),
+    User.create({ username: "murphy", password: "123", isAdmin: true }),
   ]);
 
   // Creating Inventory Items
@@ -179,6 +179,68 @@ async function seed() {
       itemPrice: 7.79,
       itemImageUrl:
         "https://images-na.ssl-images-amazon.com/images/I/91iIlD9xegL.jpg",
+    }),
+  ]);
+
+  const purchases = await Promise.all([
+    Purchase.create({
+      userId: 1,
+      status: "cart",
+    }),
+    Purchase.create({
+      userId: 1,
+      status: "purchased",
+    }),
+    Purchase.create({
+      userId: 2,
+      status: "cart",
+    }),
+    Purchase.create({
+      userId: 2,
+      status: "purchased",
+    }),
+  ]);
+
+  const shoppingItems = await Promise.all([
+    ShoppingItem.create({
+      quantity: 2,
+      inventoryItemId: 1,
+      purchaseId: 1,
+    }),
+    ShoppingItem.create({
+      quantity: 1,
+      inventoryItemId: 2,
+      purchaseId: 1,
+    }),
+    ShoppingItem.create({
+      quantity: 1,
+      inventoryItemId: 1,
+      purchaseId: 2,
+    }),
+    ShoppingItem.create({
+      quantity: 1,
+      inventoryItemId: 4,
+      purchaseId: 2,
+    }),
+    ShoppingItem.create({
+      quantity: 1,
+      inventoryItemId: 5,
+      purchaseId: 3,
+    }),
+    ShoppingItem.create({
+      quantity: 2,
+      inventoryItemId: 6,
+      purchaseId: 3,
+    }),
+    ShoppingItem.create({
+      quantity: 1,
+      inventoryItemId: 5,
+      purchaseId: 4,
+    }),
+    ShoppingItem.create({
+      quantity: 2,
+      inventoryItemId: 8,
+      purchaseId: 4,
     }),
   ]);
 
