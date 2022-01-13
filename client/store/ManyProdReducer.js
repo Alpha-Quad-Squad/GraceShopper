@@ -81,7 +81,7 @@ export const deleteInventoryItem = (id) => {
 };
 
 //Reducer
-export default (state = {}, action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case SET_INVENTORYITEMS:
       return action.items;
