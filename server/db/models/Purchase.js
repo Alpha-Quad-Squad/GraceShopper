@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Purchase = db.define('Purchase', {
+const Purchase = db.define('purchase', {
   total: {
     type: Sequelize.FLOAT
   }
