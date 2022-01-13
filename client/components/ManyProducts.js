@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 
 import { getInventoryItems } from '../store/ManyProdReducer';
 import SingleProductSnapshot from './SingleProductSnapshot';
-// Only use the following action creator for dummy data
-import { setInventoryItems } from '../store/ManyProdReducer';
-
 
 const ManyProducts = () => {
   const [loading, setLoading] = useState(false);
@@ -16,21 +13,20 @@ const ManyProducts = () => {
 
   console.log(items)
 
-  // const getItems = useCallback(async () => {
-  //   setError(null);
-  //   setLoading(true);
-  //   try {
-  //     // await dispatch(setInventoryItems());
-  //   } catch (error) {
-  //     setError(error.message);
+  const getItems = useCallback(async () => {
+    setError(null);
+    setLoading(true);
+    try {
+      await dispatch(getInventoryItems());
+    } catch (error) {
+      setError(error.message);
+    }
+    setLoading(false);
+  }, [dispatch, setError, setLoading]);
 
-  //   }
-  //   setLoading(false);
-  // }, [dispatch, setError, setLoading]);
-
-  // useEffect(() => {
-  //   getItems();
-  // }, [getItems]);
+  useEffect(() => {
+    getItems();
+  }, [getItems]);
 
   if (error) {
     return (

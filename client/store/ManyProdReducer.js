@@ -39,7 +39,7 @@ export const deletedInventoryItem = (item) => {
 export const getInventoryItems = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get('ENTER ROUTE HERE');
+      const { data } = await axios.get('/api/products');
       dispatch(setInventoryItems(data));
     } catch (error) {
       console.log(error);
