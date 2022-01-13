@@ -27,6 +27,7 @@ const SingleProduct = (props) => {
     quantity = cartProduct.qty;
   }
 
+  //this is needed to check if the user is logged in, and to pass to thunks for editing carts
   const userId = useSelector((state) => {
     return state.auth.id;
   });
@@ -39,7 +40,7 @@ const SingleProduct = (props) => {
       //if it in the cart, increment its qty in the store / db.
       if (userId) {
         //if user is logged in dispatch thunk to update db.
-        dispatch(goIncrementShoppingItem(product, userId, quantity + 1));
+        dispatch(goIncrementShoppingItem(product, userId));
       } else {
         //if not loggedIn dispatch action to update the qty in store only.
         dispatch(incrementItem(product));
