@@ -15,4 +15,4 @@ router.get('/', requireToken, isAdmin, async (req, res, next) => {
   } catch (err) {
     next(err)
   }
-})
+});

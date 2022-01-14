@@ -45,7 +45,6 @@ const ManyProducts = () => {
   };
 
   return (
-    <div id='test'>
     <div id='manyProductsContainer'>
       <h1>Our Book Collection</h1>
       <div className='itemListContainer'>
@@ -57,7 +56,6 @@ const ManyProducts = () => {
           </div>
         ))}
       </div>
-    </div>
     </div>
   );
 };

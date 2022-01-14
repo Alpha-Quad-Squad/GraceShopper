@@ -14,6 +14,9 @@ const Navbar = () => {
     dispatch(logout());
   };
 
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const adminUserPortalLink = isAdmin && <Link to='/users'>Admin Portal</Link>
+
   return (
     <div>
       <nav>
@@ -23,6 +26,7 @@ const Navbar = () => {
             <Link to="/home" className="navbar-link home">
               Home
             </Link>
+            {adminUserPortalLink}
             <a href="#" onClick={handleClick} className="navbar-link">
               Logout
             </a>
