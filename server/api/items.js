@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { requireToken, isAdmin } = require('../api/gatekeeping')
 const { models: { InventoryItem }} = require('../db')
 module.exports = router
 
