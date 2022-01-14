@@ -31,16 +31,6 @@ router.post('/', async (req, res, next) => {
       }
     )
 
-    // const testItem = await InventoryItem.create({
-    //   itemName: "The Institute by Stephen King",
-    //   itemDescription:
-    //     "The Institute is a science fiction-horror thriller novel by American author Stephen King, published on September 10, 2019, by Scribner. The book follows twelve-year-old genius Luke Ellis.",
-    //   itemPrice: 13.93,
-    //   itemImageUrl:
-    //     "https://images-na.ssl-images-amazon.com/images/I/81pA6-hv+2L.jpg",
-    // })
-
-
     res.send(newInventoryItem)
   } catch (err) {
     next(err)
