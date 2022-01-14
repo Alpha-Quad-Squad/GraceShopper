@@ -40,8 +40,15 @@ export const deletedUser = (user) => {
 export const getUsers = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get('/api/users');
-      dispatch(setUsers(data));
+      const token = window.localStorage.getItem('token')
+      if (token) {
+        const { data } = await axios.get('/api/users', {
+          headers: {
+            authorization: token
+          }
+        })
+        dispatch(setUsers(data));
+      }
     } catch (error) {
       console.log(error);
     }
