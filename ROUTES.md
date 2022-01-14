@@ -4,6 +4,9 @@ Available
 ___
 - `GET` `/api/products`: gets all InventoryItems in the database.
 - `GET` `/api/products/productId`: gets a specific InventoryItem in the database.
+- `POST` `/api/products`: add a new InventoryItem (admin functionality).
+- `PUT` `/api/products/:productId`: update the details of an existing InventoryItem.
+- `DELETE` `/api/products/:productId`: deletes a specific inventoryItem.
 
 Upcoming
 ___
@@ -20,6 +23,4 @@ ShoppingItem by 1. Used for "+ quantity" button.
 ShoppingItem by 1. Used for "= quantity" button.
 - `DELETE` `/api/user/:userid/cart/:productId`: destroy's a User's ShoppingItem.
 Used for removing an item from a user's cart.
-- `POST` `/api/products`: add a new InventoryItem (admin functionality).
-- `PUT` `/api/products/:productId`: update the details of an existing InventoryItem.
-- `DELETE` `/api/products/:productId`: deletes a specific inventoryItem.
+
