@@ -14,6 +14,9 @@ const Navbar = () => {
     dispatch(logout())
   }
 
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const adminUserPortalLink = isAdmin && <Link to='/users'>Admin Portal</Link>
+
   return (
     <div>
       <h1>FS-App-Template</h1>
@@ -22,6 +25,7 @@ const Navbar = () => {
           <div>
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
+            {adminUserPortalLink}
             <a href="#" onClick={handleClick}>
               Logout
             </a>

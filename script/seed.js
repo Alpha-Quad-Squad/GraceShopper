@@ -17,6 +17,14 @@ async function seed() {
   const users = await Promise.all([
     User.create({ username: "cody", password: "123", isAdmin: false }),
     User.create({ username: "murphy", password: "123", isAdmin: true }),
+    User.create({ username: "john", password: "123", isAdmin: false }),
+    User.create({ username: "stacie", password: "123", isAdmin: false }),
+    User.create({ username: "kim", password: "123", isAdmin: true }),
+    User.create({ username: "eric", password: "123", isAdmin: false }),
+    User.create({ username: "mike", password: "123", isAdmin: true }),
+    User.create({ username: "jenn", password: "123", isAdmin: false }),
+    User.create({ username: "tom", password: "123", isAdmin: false }),
+    User.create({ username: "lisa", password: "123", isAdmin: true }),
   ]);
 
   // Creating Inventory Items

@@ -20,10 +20,9 @@ const Routes = () => {
     return !!state.auth.id;
   });
 
-
   const isAdmin = useSelector((state) => state.auth.isAdmin);
-  console.log(isAdmin);
   const adminUserPortal = isAdmin && <Route exact path='/users' component={AllUsers} />
+
   return (
     <div>
       {isLoggedIn ? (
