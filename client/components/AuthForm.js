@@ -1,6 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
-import {authenticate} from '../store'
+import {authenticate} from '../store';
+// css style import.
+import './auth.css'
 
 /**
  * COMPONENT
@@ -8,9 +11,20 @@ import {authenticate} from '../store'
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
+  let linkToSignUp = <div></div>
+    if (displayName === 'Login') {
+      linkToSignUp = (
+        <>
+          <div className='create-new-account-auth-div'>
+            <p>New to Grace shopper ?</p>
+            <Link to="/Signup" className="create-new-account-auth-link"> Create an account</Link>
+          </div>
+        </>)
+    }
+
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form onSubmit={handleSubmit} name={name} className="login-Form">
         <div>
           <label htmlFor="username">
             <small>Username</small>
@@ -23,11 +37,15 @@ const AuthForm = props => {
           </label>
           <input name="password" type="password" />
         </div>
-        <div>
-          <button type="submit">{displayName}</button>
+        <div className='login-cancel-btn-div'>
+          <button type="submit" className="submit-button">{displayName}</button>
+          <Link to="/home" className="cancel-button" style={{ textDecoration: 'none' }}>Cancel</Link>
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
+        {error && error.response && <div className='Incorrect-user-pwd'> {error.response.data} </div>}
       </form>
+      <div className='createAccount'>
+          {linkToSignUp}
+        </div>
     </div>
   )
 }

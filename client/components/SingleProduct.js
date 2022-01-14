@@ -2,16 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
-import { addItem, incrementItem } from "../store/cart";
-
-let product = {
-  id: 4,
-  itemName: "Super Great Book",
-  itemDescription: "This is the such a beautiful book by a great author",
-  itemPrice: 12.99,
-  itemImageUrl:
-    "https://purepng.com/public/uploads/large/purepng.com-booksbookillustratedwrittenprintedliteratureclipart-1421526451707uyace.png",
-};
+import { addItem, incrementItem, goAddShoppingItem } from "../store/cart";
 
 const SingleProduct = (props) => {
   const dispatch = useDispatch();
@@ -21,28 +12,48 @@ const SingleProduct = (props) => {
     dispatch(fetchSingleProduct(productId));
   }, []);
 
-  //   const product = useSelector((state) => {
-  //     return state.singleProduct;
-  //   });
+  const product = useSelector((state) => {
+    return state.singleProduct;
+  });
 
   const cart = useSelector((state) => {
     return state.cart;
   });
 
+  let quantity = 0;
+  if (cart.length) {
+    const [cartProduct] = cart.filter((item) => product.id === item.id);
+
+    quantity = cartProduct.qty;
+  }
+
+  //this is needed to check if the user is logged in, and to pass to thunks for editing carts
+  const userId = useSelector((state) => {
+    return state.auth.id;
+  });
+
   const addToCart = () => {
     //check if the item is in the cart already
-    let inCart = false;
-    cart.forEach((item) => {
-      if (product.id === item.id) {
-        inCart = true;
-      }
-    });
+    let inCart = !!quantity;
+
     if (inCart) {
-      //if it in the cart, increment its qty in the store.
-      dispatch(incrementItem(product));
+      //if it in the cart, increment its qty in the store / db.
+      if (userId) {
+        //if user is logged in dispatch thunk to update db.
+        dispatch(goIncrementShoppingItem(product, userId));
+      } else {
+        //if not loggedIn dispatch action to update the qty in store only.
+        dispatch(incrementItem(product));
+      }
     } else {
-      //if it is not in the cart add it to the cart in the store (with qty 1)
-      dispatch(addItem(product));
+      //if item is not in the cart, add it to the cart in the store / db (with qty 1)
+      if (userId) {
+        //if user is logged in dispatch thunk to update db to add it with qty1.
+        dispatch(goAddShoppingItem(product, userId));
+      } else {
+        //if not loggedIn dispatch action to update the store only.
+        dispatch(addItem(product));
+      }
     }
   };
 

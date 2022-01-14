@@ -1,5 +1,16 @@
-body {
+/* body {
   font-family: sans-serif;
+} */
+
+* {
+  box-sizing: border-box;
+  font-family: arial, sans-serif;
+}
+
+body {
+ margin: 0;
+ padding: 0;
+
 }
 
 a {
@@ -10,15 +21,15 @@ label {
   display: block;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
+/* nav a {
+  display: inline-block; 
+   margin: 1em;
+} */
 
-form div {
+/* form div {
   margin: 1em;
   display: inline-block;
-}
+} */
 
 
 /* The following is for Item Snapshot Component - Ace */
