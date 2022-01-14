@@ -21,7 +21,7 @@ router.get('/:productId', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', requireToken, isAdmin, async (req, res, next) => {
   try {
     const { itemName ,itemDescription, itemPrice, itemImageUrl } = req.body
     const newInventoryItem = await InventoryItem.create(
@@ -34,7 +34,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:productId', async (req, res, next) => {
+router.delete('/:productId',  requireToken, isAdmin, async (req, res, next) => {
   try {
     const { productId } = req.params
     const deletedInventoryItem = await InventoryItem.getItem(productId)
@@ -45,7 +45,7 @@ router.delete('/:productId', async (req, res, next) => {
   }
 })
 
-router.put('/:productId', async (req, res, next) => {
+router.put('/:productId',  requireToken, isAdmin, async (req, res, next) => {
   try {
     const { productId } = req.params
     const updatedInventoryItem =  await InventoryItem.getItem(productId)
