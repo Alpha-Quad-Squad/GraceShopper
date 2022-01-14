@@ -11,6 +11,7 @@ router.get('/cart/:userId', async(req,res,next) => {
                 userId: id,
                 status: "cart"
             },
+            include: InventoryItem
         });
         res.json(userCart)
     } catch(err) {
