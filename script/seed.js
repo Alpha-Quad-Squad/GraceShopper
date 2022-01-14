@@ -1,5 +1,5 @@
 "use strict";
-
+const colors = require("colors");
 const {
   db,
   models: { User, InventoryItem, ShoppingItem, Purchase },
@@ -11,7 +11,7 @@ const {
  */
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
-  console.log("db synced!");
+  console.log("db synced!".rainbow);
 
   // Creating Users
   const users = await Promise.all([
@@ -190,6 +190,10 @@ async function seed() {
     }),
   ]);
 
+  console.log(`seeded ${users.length} users`.brightGreen);
+  console.log(`seeded ${InventoryItem.length} inventory items`.brightGreen);
+  console.log(`seeded successfully`.brightBlue);
+
   const purchases = await Promise.all([
     Purchase.create({
       userId: 1,
@@ -269,16 +273,16 @@ async function seed() {
  The `seed` function is concerned only with modifying the database.
 */
 async function runSeed() {
-  console.log("seeding...");
+  console.log("seeding...".brightBlue);
   try {
     await seed();
   } catch (err) {
     console.error(err);
     process.exitCode = 1;
   } finally {
-    console.log("closing db connection");
+    console.log("closing db connection".brightGreen);
     await db.close();
-    console.log("db connection closed");
+    console.log("db connection closed".brightGreen);
   }
 }
 

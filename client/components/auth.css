@@ -1,0 +1,97 @@
+
+.login-Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    margin-top: 3%;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    border: 1px solid #ababab;
+    border-radius: 10px;
+    padding: 20px;
+    padding-bottom: 30px;
+    box-shadow: 0 0 15px 10px rgba(0,0,0,0.06);
+}
+
+.submit-button {
+    background-color: rgb(40, 156, 191);
+    font-size: 18px;
+    color: white;
+    padding: 15px 0;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    border-radius: 10px;
+    border: 1px solid #ababab;
+  }
+  
+  .submit-button:hover {
+    opacity: 0.8;
+  }
+
+  .cancel-button {
+    background-color: #f56a1f;
+    color: white;
+    width: 60%;
+    padding: 15px 0;
+    margin: 10px 0;
+    border: none;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #ababab;
+  }
+
+  .cancel-button:hover {
+    opacity: 0.8;
+  }
+
+  .Incorrect-user-pwd {
+    color: hsl(0, 93%, 49%);
+  }
+
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  .login-Form div {
+    margin: 5%;
+  }
+
+  .login-cancel-btn-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:80%
+  }
+
+  .create-new-account-auth-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .create-new-account-auth-link {
+    color: white;
+    background-color: rgb(40, 156, 191);
+    border: solid #c7c5c5 1px;
+    padding: 1%;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 10px rgba(0,0,0,0.06);
+  }
+
+  .create-new-account-auth-link:hover {
+    opacity: 0.8;
+  }
+  

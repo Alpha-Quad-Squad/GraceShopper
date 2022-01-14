@@ -6,6 +6,9 @@ import {
   removeItem,
   decrementItem,
   emptyCart,
+  goIncrementShoppingItem,
+  goDecrementShoppingItem,
+  goRemoveShoppingItem,
 } from "../store/cart";
 import SingleProductSnapshot from "./SingleProductSnapshot";
 
@@ -16,20 +19,49 @@ const Cart = () => {
     return state.cart;
   });
 
+  //this is needed to check if the user is logged in, and to pass to thunks for editing carts
+  const userId = useSelector((state) => {
+    return state.auth.id;
+  });
+
   const increment = (item) => {
-    dispatch(incrementItem(item));
+    if (userId) {
+      //if user is logged in dispatch thunk to update db.
+      dispatch(goIncrementShoppingItem(item, userId));
+    } else {
+      //if not loggedIn dispatch action to update the qty in store only.
+      dispatch(incrementItem(item));
+    }
   };
 
   const decrement = (item) => {
-    dispatch(decrementItem(item));
+    if (userId) {
+      //if user is logged in dispatch thunk to update db.
+      dispatch(goDecrementShoppingItem(item, userId));
+    } else {
+      //if not loggedIn dispatch action to update the qty in store only.
+      dispatch(decrementItem(item));
+    }
   };
 
   const remove = (item) => {
-    dispatch(removeItem(item));
+    if (userId) {
+      //if user is logged in dispatch thunk remove shoppingItem in db.
+      dispatch(goRemoveShoppingItem(item, userId));
+    } else {
+      //if not loggedIn dispatch action to remove item in store only.
+      dispatch(removeItem(item));
+    }
   };
 
   const empty = () => {
-    dispatch(emptyCart());
+    if (userId) {
+      //if user is logged in dispatch thunk remove cart shoppingItems for this user in db. (route hasn't been written for this.  it is not a tier 1 req)
+      dispatch(goEmptyCart(userId));
+    } else {
+      //if not loggedIn dispatch action to remove item in store only.
+      dispatch(emptyCart());
+    }
   };
 
   const cartTotal = currentCart.reduce((passedIn, item) => {
@@ -43,10 +75,7 @@ const Cart = () => {
         return (
           <div key={item.id}>
             <SingleProductSnapshot itemData={item} />
-            {/* <div key={item.id}>
-              <img src={item.itemImageUrl} />
-              {item.itemName}$ {item.itemPrice}
-            </div> */}
+
             <div>
               X {item.qty} = $ {item.qty * item.itemPrice}
             </div>
