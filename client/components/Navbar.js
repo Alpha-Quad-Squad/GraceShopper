@@ -9,6 +9,10 @@ const Navbar = () => {
     return !!state.auth.id;
   });
 
+  const username = useSelector((state) => {
+    return state.auth.username
+  })
+
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(logout());
@@ -21,8 +25,9 @@ const Navbar = () => {
           <>
             {/* The navbar will show these links after you log in */}
             <Link to="/home" className="navbar-link home">
-              Home
+              Grace Shopper
             </Link>
+            <p className="welcome-user">Welcome {username}</p>
             <a href="#" onClick={handleClick} className="navbar-link">
               Logout
             </a>
@@ -31,7 +36,7 @@ const Navbar = () => {
           <>
             {/* The navbar will show these links before you log in */}
             <Link to="/home" className="navbar-link home">
-              Home
+              Grace Shopper
             </Link>
             <Link to="/login" className="navbar-link">
               Login
@@ -42,7 +47,7 @@ const Navbar = () => {
           </>
         )}
         <Link to="/cart" className="navbar-link">
-          Cart
+          Cart  🛒
         </Link>
       </nav>
     </div>
