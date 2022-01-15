@@ -1,0 +1,20 @@
+
+.Payment-submitted-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.Payment-submitted-div >div{
+    margin-top: 10%;
+    padding: 1%;
+    border: solid rgb(155, 255, 222) 20px;
+    box-shadow: 0 0 15px 10px rgba(0,0,0,0.06);
+
+    border-radius: 15px;
+    color: hsl(160, 23%, 50%);
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}

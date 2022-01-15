@@ -5,20 +5,14 @@ import './checkout.css'
 
 const Checkout = () => {
 
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(true);
 
     const handlechecked = () => {
         setChecked(!checked)
     }
 
-    // const active = () => {
-
-    //     active = "Billing-Address-Payment-div"
-    // }
-
     return (
         <div>
-            this is the checkout page
             <form className="checkout-form">
                 <div className="Billing-Address-Payment-div">
                     <h2>Billing Address</h2>
@@ -46,7 +40,7 @@ const Checkout = () => {
                         </label>
                     </div>
                 </div>
-                <div className={!checked? "Billing-Address-Payment-div": 'hideDiv' }>
+                <div className={!checked ? "Billing-Address-Payment-div" : 'hideDiv'}>
                     <h2>Shipping Address</h2>
                     <label htmlFor="full name">Full Name</label>
                     <input type='text' />
@@ -84,8 +78,8 @@ const Checkout = () => {
                         </div>
                     </div>
                     <div className='submit-payment-cancel-btn-div'>
-                        <button type="submit" className="submit-payment-button">Submit Payment</button>
-                        <Link to="/home" className="cancel-button" style={{ textDecoration: 'none' }}>Cancel</Link>
+                        <Link to="/postCheckoutRedirect" className="submit-payment-button" style={{ textDecoration: 'none' }}>Submit Payment</Link>
+                        <Link to="/cart" className="cancel-checkout-button" style={{ textDecoration: 'none' }}>Cancel</Link>
                     </div>
                 </div>
 
