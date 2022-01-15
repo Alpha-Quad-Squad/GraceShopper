@@ -8,6 +8,7 @@ import { me } from "./store";
 import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
 import ManyProducts from "./components/ManyProducts";
+import Checkout from "./components/Checkout";
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Routes = () => {
           <Route path="/home" component={Home} />
           <Route exact path="/products/:productId" component={SingleProduct} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/products" component={ManyProducts} />
           <Redirect to="/home" />
         </Switch>
@@ -37,6 +39,7 @@ const Routes = () => {
           <Route path="/signup" component={Signup} />
           <Route exact path="/products/:productId" component={SingleProduct} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/products" component={ManyProducts} />
         </Switch>
       )}
