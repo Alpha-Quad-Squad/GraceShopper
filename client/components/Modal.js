@@ -14,6 +14,7 @@ const Modal = () => {
 
     const close = () => {
         dispatch(closeModal())
+        
     }
 
     if (!modalState) return null;
