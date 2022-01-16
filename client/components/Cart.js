@@ -11,9 +11,15 @@ import {
   goRemoveShoppingItem,
 } from "../store/cart";
 import SingleProductSnapshot from "./SingleProductSnapshot";
+import { openModal } from "../store/modal";
+import Modal from "./Modal";
 
-const Cart = () => {
+const Cart = (props) => {
   const dispatch = useDispatch();
+
+  const open = () => {
+    dispatch(openModal())
+  }
 
   const currentCart = useSelector((state) => {
     return state.cart;
@@ -23,6 +29,15 @@ const Cart = () => {
   const userId = useSelector((state) => {
     return state.auth.id;
   });
+
+  // this function handles the pop-up modal.
+  const modalHandler = () =>  {
+    if (userId) {
+     props.history.push('/checkout')
+    } else {
+      open();
+    }
+  }
 
   const increment = (item) => {
     if (userId) {
@@ -71,6 +86,7 @@ const Cart = () => {
 
   return (
     <>
+    <Modal />
       {currentCart.map((item) => {
         return (
           <div key={item.id}>
@@ -88,6 +104,9 @@ const Cart = () => {
       <div>Total = $ {cartTotal}</div>
       <div>
         <button onClick={() => empty()}>empty cart</button>
+      </div>
+      <div>
+        <button onClick={() => modalHandler()}>Proceed to checkout</button>
       </div>
     </>
   );
