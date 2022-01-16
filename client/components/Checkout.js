@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { emptyCart } from "../store/cart"
 // css style import.
 import './checkout.css'
 
@@ -7,9 +9,26 @@ const Checkout = () => {
 
     const [checked, setChecked] = useState(true);
 
+    const userId = useSelector((state) => {
+        return state.auth.id;
+      });
+
+    const dispatch = useDispatch();
+    
+    // checkbox function to show the shipping adress form fields.
     const handlechecked = () => {
         setChecked(!checked)
     }
+
+    const resetCart = () => {
+        if (userId) {
+          //if user is logged in dispatch thunk to change status of purchase to be purchased db.
+          // ******** a method to be added here later **********.
+        } else {
+          //if not loggedIn dispatch action to remove items in store only.
+          dispatch(emptyCart());
+        }
+      };
 
     return (
         <div>
@@ -78,7 +97,7 @@ const Checkout = () => {
                         </div>
                     </div>
                     <div className='submit-payment-cancel-btn-div'>
-                        <Link to="/postCheckoutRedirect" className="submit-payment-button" style={{ textDecoration: 'none' }}>Submit Payment</Link>
+                        <Link to="/postCheckoutRedirect" className="submit-payment-button" style={{ textDecoration: 'none' }} onClick={()=> resetCart()}>Submit Payment</Link>
                         <Link to="/cart" className="cancel-checkout-button" style={{ textDecoration: 'none' }}>Cancel</Link>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ const Modal = () => {
                             Login / Signup
                         </Link>
                         <Link to="/checkout" onClick={() => close()} className="modal-link">
-                            Continue as a guest
+                            Continue as guest
                         </Link>
                         <button onClick={() => close()} className="cancel-modal-button" style={{ textDecoration: 'none' }}>
                             Cancel
