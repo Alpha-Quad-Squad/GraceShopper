@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { requireToken, isAdmin } = require('../api/gatekeeping')
 const { models: { InventoryItem }} = require('../db')
 module.exports = router
 
@@ -20,15 +21,11 @@ router.get('/:productId', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', requireToken, isAdmin, async (req, res, next) => {
   try {
+    const { itemName ,itemDescription, itemPrice, itemImageUrl } = req.body
     const newInventoryItem = await InventoryItem.create(
-      {
-        itemName: req.body.itemName,
-        itemDescription: req.body.itemDescription,
-        itemPrice: req.body.itemPrice,
-        itemImageUrl: req.body.itemImageUrl
-      }
+      { itemName, itemDescription, itemPrice, itemImageUrl }
     )
 
     res.send(newInventoryItem)
@@ -37,9 +34,10 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:productId', async (req, res, next) => {
+router.delete('/:productId',  requireToken, isAdmin, async (req, res, next) => {
   try {
-    const deletedInventoryItem = await InventoryItem.getItem(req.params.productId)
+    const { productId } = req.params
+    const deletedInventoryItem = await InventoryItem.getItem(productId)
     await deletedInventoryItem.destroy();
     res.send(deletedInventoryItem)
   } catch (err) {
@@ -47,9 +45,10 @@ router.delete('/:productId', async (req, res, next) => {
   }
 })
 
-router.put('/:productId', async (req, res, next) => {
+router.put('/:productId',  requireToken, isAdmin, async (req, res, next) => {
   try {
-    const updatedInventoryItem =  await InventoryItem.getItem(req.params.productId)
+    const { productId } = req.params
+    const updatedInventoryItem =  await InventoryItem.getItem(productId)
     await updatedInventoryItem.update(req.body)
     res.send(updatedInventoryItem)
   }

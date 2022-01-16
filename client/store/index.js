@@ -7,13 +7,15 @@ import singleProduct from "./singleProduct";
 import cart from "./cart";
 import inventoryItems from "./ManyProdReducer";
 import { modalReducer } from "./modal"
+import users from './AllUsersReducer';
 
 const reducer = combineReducers({
   auth,
   singleProduct,
   cart,
   inventoryItems,
-  modalReducer
+  modalReducer,
+  users
 });
 
 const middleware = composeWithDevTools(
