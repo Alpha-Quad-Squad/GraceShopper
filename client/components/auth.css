@@ -51,6 +51,7 @@
 
   .Incorrect-user-pwd {
     color: hsl(0, 93%, 49%);
+    text-align: center;
   }
 
   input[type=text], input[type=password] {

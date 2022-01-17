@@ -7,7 +7,7 @@ nav {
     height: 80px;
     padding: 10px;
     flex-direction: row;
-    justify-content: flex-end
+    justify-content: flex-end;
   }
 
   .navbar-link {
@@ -22,5 +22,16 @@ nav {
   }
 
   .home {
+    font-weight: bold;
+    color: #eef2f5;
     margin-right: auto;
+    font-style:italic;
+    font-family:'Times New Roman', Times, serif;
    }
+
+   .welcome-user {
+     font-size: 25px;
+     margin-right:2%;
+     color: #eef2f5;
+   }
+   

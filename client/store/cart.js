@@ -3,14 +3,24 @@ import Cart from "../components/Cart";
 //helpful ideas in this article: https://dev.to/aneeqakhan/building-shopping-cart-actions-and-reducers-with-redux-in5
 //the only thing I don't like about their approach is that their "cart" includes ALL possible products (regardless of whether they're in the cart).  each product has a property "is selected"  i think that makes the cart needlessly large.  I think the cart array should only include items that are in the cart
 
+const TOKEN = "token";
+const CART = "cart";
+
 //action types
+const SET_CART = "SET_CART";
 const ADD_ITEM = "ADD_ITEM";
 const REMOVE_ITEM = "REMOVE_ITEM";
-const INCREMENT_ITEM = "INCREMENT_ITEM";
-const DECREMENT_ITEM = "DECREMENT_ITEM";
+const UPDATE_ITEM_QTY = "UPDATE_ITEM_QTY";
 const EMPTY_CART = "EMPTY_CART";
 
 //this assumes the app will never try to add an item to the cart that is already in the cart.  there should be a check for that in the component before this result of this action creator is dispatched.
+
+export const setCart = (cart) => {
+  return {
+    type: SET_CART,
+    cart,
+  };
+};
 export const addItem = (item) => {
   return {
     type: ADD_ITEM,
@@ -23,17 +33,11 @@ export const removeItem = (item) => {
     item,
   };
 };
-export const incrementItem = (item) => {
+export const updateItemQty = (item, qty) => {
   return {
-    type: INCREMENT_ITEM,
+    type: UPDATE_ITEM_QTY,
     item,
-  };
-};
-
-export const decrementItem = (item) => {
-  return {
-    type: DECREMENT_ITEM,
-    item,
+    qty,
   };
 };
 
@@ -51,58 +55,56 @@ export const emptyCart = () => {
 //convert any contents of a cart the user had assembled before logging in into shopping items.
 //it will need to fetch any shoppingItems with cart status in the databse for that user.  They will need to be added to the cart array in the reducer.
 
-export const goAddShoppingItem = (item, userId) => {
+export const fetchCart = (userId) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
-      const { data: product } = await axios.post(
-        `/api/users/${userId}/cart/${item.id}`,
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
-      //at the moment we haven't dispateched the product returned from the database because
-      //we already have the item object from the component.
-      //this axios call is made to the shoppingItem table rather than the product/InventoryItem table.  Therefore it could be tedious on the backend to make use of a join to get an item/product object from the db that we already have access to on the front end.
-      dispatch(addItem(item));
+      const { data: cart } = await axios.get(`/api/cart/${userId}`, {
+        headers: {
+          authorization: token,
+        },
+      });
+      dispatch(setCart(cart));
+    } catch (error) {
+      console.log("there was a problem fetching this user's cart", error);
+    }
+  };
+};
+
+export const goAddShoppingItem = (item, userId, quantity) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem(TOKEN);
+      const { data: product } = await axios.post(`/api/cart/${userId}`, {
+        headers: {
+          authorization: token,
+        },
+        itemId: item.id,
+        quantity: quantity,
+      });
+
+      dispatch(addItem(product));
     } catch (err) {
       console.log(err);
     }
   };
 };
 
-export const goIncrementShoppingItem = (item, userId) => {
+export const goUpdateShoppingItemQty = (item, userId, quantity) => {
   return async (dispatch) => {
     try {
+      const token = window.localStorage.getItem(TOKEN);
       const { data: product } = await axios.put(
-        `/api/user/${userId}/cart/${item.id}/increment`,
+        `/api/cart/${userId}/quantity-update`,
         {
           headers: {
             authorization: token,
           },
+          itemId: item.id,
+          quantity: quantity,
         }
       );
-      dispatch(incrementItem(item));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-
-export const goDecrementShoppingItem = (item, userId) => {
-  return async (dispatch) => {
-    try {
-      const { data: product } = await axios.put(
-        `/api/user/${userId}/cart/${item.id}/decrement`,
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
-      dispatch(decrementItem(item));
+      dispatch(updateItemQty(product, product.qty));
     } catch (err) {
       console.log(err);
     }
@@ -112,16 +114,18 @@ export const goDecrementShoppingItem = (item, userId) => {
 export const goRemoveShoppingItem = (item, userId) => {
   return async (dispatch) => {
     try {
-      const { data: product } = await axios.delete(
-        `/api/user/${userId}/cart/${item.id}`,
+      const token = window.localStorage.getItem(TOKEN);
+      const { data: newCart } = await axios.put(
+        `/api/cart/${userId}/remove-item`,
         {
           headers: {
             authorization: token,
           },
+          itemId: item.id,
         }
       );
 
-      dispatch(removeItem(item));
+      dispatch(setCart(newCart));
     } catch (err) {
       console.log(err);
     }
@@ -131,16 +135,12 @@ export const goRemoveShoppingItem = (item, userId) => {
 export const goEmptyCart = (userId) => {
   return async (dispatch) => {
     try {
-      //we do not yet have a route for emptying the cart.  Its not even a tier 1 requirement.
-      //we could make this thunk to loop over each object in the cart and make a delete axios call for each of those items.   That seems suboptimal though.
-      // const { data: product } = await axios.delete(
-      //   `/api/user/${userId}/cart/${item.id}`,
-      //   {
-      //     headers: {
-      //       authorization: token,
-      //     },
-      //   }
-      // );
+      const token = window.localStorage.getItem(TOKEN);
+      const { data: newCart } = await axios.delete(`/api/cart/${userId}`, {
+        headers: {
+          authorization: token,
+        },
+      });
 
       dispatch(emptyCart());
     } catch (err) {
@@ -149,7 +149,7 @@ export const goEmptyCart = (userId) => {
   };
 };
 
-const initialState = [];
+const initialState = JSON.parse(window.localStorage.getItem(CART)) || [];
 /*
 here is an example of what a cart array will look like when it isn't empty.
 it only includes products that have been added to the cart.
@@ -172,6 +172,8 @@ it only includes products that have been added to the cart.
 //reducer
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_CART:
+      return action.cart;
     case ADD_ITEM:
       let newItem = { ...action.item }; //I'm taking care to make a copy of the item so we don't leave side effects on the action.item
       newItem.qty = 1;
@@ -180,28 +182,14 @@ export default (state = initialState, action) => {
       return state.filter((item) => {
         return item.id !== action.item.id;
       });
-    case INCREMENT_ITEM:
+    case UPDATE_ITEM_QTY:
       return state.map((item) => {
         let newItem = { ...item }; //make a copy of the item so we don't leave side effects on the old item in the previous state.
-        console.log("action.type.item", action.item);
-        console.log("item", item);
-        if (item.id === action.item.id) {
-          newItem.qty++;
-        }
-        return newItem;
-      });
-    case DECREMENT_ITEM:
-      let newState = state.map((item) => {
-        let newItem = { ...item };
 
         if (item.id === action.item.id) {
-          newItem.qty--;
+          newItem.qty = action.qty;
         }
         return newItem;
-      });
-      //if the qty of any item is now zero it should be filtered out of the cart
-      return newState.filter((item) => {
-        return item.qty;
       });
     case EMPTY_CART:
       return [];

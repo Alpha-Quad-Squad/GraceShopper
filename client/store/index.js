@@ -6,6 +6,7 @@ import auth from "./auth";
 import singleProduct from "./singleProduct";
 import cart from "./cart";
 import inventoryItems from "./ManyProdReducer";
+import { modalReducer } from "./modal"
 import users from './AllUsersReducer';
 
 const reducer = combineReducers({
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   singleProduct,
   cart,
   inventoryItems,
+  modalReducer,
   users
 });
 
