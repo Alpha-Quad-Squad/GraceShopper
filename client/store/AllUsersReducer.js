@@ -48,6 +48,8 @@ export const getUsers = () => {
           }
         })
         dispatch(setUsers(data));
+      } else {
+        throw new Error('Token not found in user get route.')
       }
     } catch (error) {
       console.log(error);
@@ -72,7 +74,7 @@ export const updateUser = (user) => {
       const { data } = await axios.put(`ENTER ROUTE HERE/${user.id}`, user);
       dispatch(updatedUser(data));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 };
@@ -83,7 +85,7 @@ export const deleteUser = (id) => {
       const { data } = await axios.delete(`ENTER ROUTE HERE/${id}`);
       dispatch(deletedUser(data));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 };

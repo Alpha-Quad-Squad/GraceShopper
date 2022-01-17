@@ -22,7 +22,7 @@ label {
 }
 
 /* nav a {
-  display: inline-block; 
+  display: inline-block;
    margin: 1em;
 } */
 
@@ -65,7 +65,7 @@ label {
 
 #manyProductsContainer {
   margin: auto;
-  width: 85%;
+  width: 90%;
   padding: 10px;
 }
 
@@ -75,7 +75,7 @@ label {
 }
 
 .itemListContainer>div {
-  margin: 30px;
+  margin: 10px;
   align-items: center;
 }
 

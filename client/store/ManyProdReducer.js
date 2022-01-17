@@ -50,8 +50,18 @@ export const getInventoryItems = () => {
 export const createInventoryItem = (item) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post('ENTER ROUTE HERE', item);
-      dispatch(createdInventoryItem(data));
+      const token = window.localStorage.getItem('token')
+      if (token) {
+        const { data } = await axios.post('/api/products', {
+          headers: {
+            authorization: token
+          },
+          body: item
+        });
+        dispatch(createdInventoryItem(data));
+      } else {
+        throw new Error('Token not found in inventory post route.');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -61,10 +71,20 @@ export const createInventoryItem = (item) => {
 export const updateInventoryItem = (item) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.put(`ENTER ROUTE HERE/${item.id}`, item);
-      dispatch(updatedInventoryItem(data));
+      const token = window.localStorage.getItem('token')
+      if (token) {
+        const { data } = await axios.put(`/api/products/${item.id}`, {
+          headers: {
+            authorization: token
+          },
+          body: item
+        });
+        dispatch(updatedInventoryItem(data));
+      } else {
+        throw new Error('Token not found in inventory put route.');
+      }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 };
@@ -72,10 +92,19 @@ export const updateInventoryItem = (item) => {
 export const deleteInventoryItem = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.delete(`ENTER ROUTE HERE/${id}`);
-      dispatch(deletedInventoryItem(data));
+      const token = window.localStorage.getItem('token')
+      if (token) {
+        const { data } = await axios.delete(`/api/products/${id}`, {
+          headers: {
+            authorization: token
+          }
+        });
+        dispatch(deletedInventoryItem(data));
+      } else {
+        throw new Error('Token not found in inventory delete route.');
+      }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 };
