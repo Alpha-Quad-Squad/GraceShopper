@@ -4,6 +4,17 @@ const {
 } = require("../db");
 module.exports = router;
 
+//inventoryItem.shoppingItem.quantity can be used to access the quantity of an item in the backend cart.
+//this function can take a backend end cart, and turn it into a front end cart (where the qty value is a property directly on each product in the cart)
+//this function is declared here so it can be used in multiple routes.
+// const makeFrontEndCart = (backEndCart) => {
+//   return backEndCart.map((cartItem) => {
+//     let quantity = cartItem.shoppingItem.quantity;
+//     cartItem.qty = quantity;
+//     return cartItem;
+//   });
+// };
+
 //get all the inventoryItems and their quantities that are shopping items in a purchase with cart status for a given user.
 router.get("/cart/:userId", async (req, res, next) => {
   try {
@@ -17,7 +28,10 @@ router.get("/cart/:userId", async (req, res, next) => {
     });
     const userCart = userPurchases.inventoryItems;
     //the userCart is an array of inventoryItems which are in the cart.
+
     //inventoryItem.shoppingItem.quantity can be used to access the quantity of this item in the cart
+    //use this information to reformat the cart to be like the cart on the front end.
+    //let frontEndCart = makeFrontEndCart(userCart);
 
     res.json(userCart);
   } catch (err) {

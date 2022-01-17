@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
 import { addItem, incrementItem, goAddShoppingItem } from "../store/cart";
 
+const CART = "cart";
+
 const SingleProduct = (props) => {
   const dispatch = useDispatch();
   const productId = props.match.params.productId;
@@ -20,11 +22,15 @@ const SingleProduct = (props) => {
     return state.cart;
   });
 
+  //establish whether this item is in the cart and if it is, how many
   let quantity = 0;
+  //if there is something in the cart, check if it is the item that is currently displayed
   if (cart.length) {
     const [cartProduct] = cart.filter((item) => product.id === item.id);
-
-    quantity = cartProduct.qty;
+    //if the item currently displayed it in the cart, check how many
+    if (cartProduct) {
+      quantity = cartProduct.qty;
+    }
   }
 
   //this is needed to check if the user is logged in, and to pass to thunks for editing carts
@@ -56,6 +62,11 @@ const SingleProduct = (props) => {
       }
     }
   };
+
+  //this makes sure that the cart in local storage is updated whenever a change is made to it.  This is important since the reducer accesses local storage to get the initial state.  this allows a cart to persist for a non logged in user even when they refresh.
+  useEffect(() => {
+    window.localStorage.setItem(CART, JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <>

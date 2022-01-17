@@ -14,16 +14,23 @@ import SingleProductSnapshot from "./SingleProductSnapshot";
 import { openModal } from "../store/modal";
 import Modal from "./Modal";
 
+const CART = "cart";
+
 const Cart = (props) => {
   const dispatch = useDispatch();
 
   const open = () => {
-    dispatch(openModal())
-  }
+    dispatch(openModal());
+  };
 
   const currentCart = useSelector((state) => {
     return state.cart;
   });
+
+  //this makes sure that the cart in local storage is updated whenever a change is made to it.  This is important since the reducer accesses local storage to get the initial state.  this allows a cart to persist for a non logged in user even when they refresh.
+  useEffect(() => {
+    window.localStorage.setItem(CART, JSON.stringify(currentCart));
+  }, [currentCart]);
 
   //this is needed to check if the user is logged in, and to pass to thunks for editing carts
   const userId = useSelector((state) => {
@@ -31,13 +38,13 @@ const Cart = (props) => {
   });
 
   // this function handles the pop-up modal.
-  const modalHandler = () =>  {
+  const modalHandler = () => {
     if (userId) {
-     props.history.push('/checkout')
+      props.history.push("/checkout");
     } else {
       open();
     }
-  }
+  };
 
   const increment = (item) => {
     if (userId) {
@@ -86,7 +93,7 @@ const Cart = (props) => {
 
   return (
     <>
-    <Modal />
+      <Modal />
       {currentCart.map((item) => {
         return (
           <div key={item.id}>

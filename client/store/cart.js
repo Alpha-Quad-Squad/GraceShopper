@@ -3,6 +3,9 @@ import Cart from "../components/Cart";
 //helpful ideas in this article: https://dev.to/aneeqakhan/building-shopping-cart-actions-and-reducers-with-redux-in5
 //the only thing I don't like about their approach is that their "cart" includes ALL possible products (regardless of whether they're in the cart).  each product has a property "is selected"  i think that makes the cart needlessly large.  I think the cart array should only include items that are in the cart
 
+const TOKEN = "token";
+const CART = "cart";
+
 //action types
 const ADD_ITEM = "ADD_ITEM";
 const REMOVE_ITEM = "REMOVE_ITEM";
@@ -149,7 +152,7 @@ export const goEmptyCart = (userId) => {
   };
 };
 
-const initialState = [];
+const initialState = JSON.parse(window.localStorage.getItem(CART)) || [];
 /*
 here is an example of what a cart array will look like when it isn't empty.
 it only includes products that have been added to the cart.
@@ -183,8 +186,7 @@ export default (state = initialState, action) => {
     case INCREMENT_ITEM:
       return state.map((item) => {
         let newItem = { ...item }; //make a copy of the item so we don't leave side effects on the old item in the previous state.
-        console.log("action.type.item", action.item);
-        console.log("item", item);
+
         if (item.id === action.item.id) {
           newItem.qty++;
         }
