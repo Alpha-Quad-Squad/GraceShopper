@@ -9,8 +9,7 @@ const CART = "cart";
 //action types
 const ADD_ITEM = "ADD_ITEM";
 const REMOVE_ITEM = "REMOVE_ITEM";
-const INCREMENT_ITEM = "INCREMENT_ITEM";
-const DECREMENT_ITEM = "DECREMENT_ITEM";
+const UPDATE_ITEM_QTY = "UPDATE_ITEM_QTY";
 const EMPTY_CART = "EMPTY_CART";
 
 //this assumes the app will never try to add an item to the cart that is already in the cart.  there should be a check for that in the component before this result of this action creator is dispatched.
@@ -26,17 +25,11 @@ export const removeItem = (item) => {
     item,
   };
 };
-export const incrementItem = (item) => {
+export const updateItemQty = (item, qty) => {
   return {
-    type: INCREMENT_ITEM,
+    type: UPDATE_ITEM_QTY,
     item,
-  };
-};
-
-export const decrementItem = (item) => {
-  return {
-    type: DECREMENT_ITEM,
-    item,
+    qty,
   };
 };
 
@@ -54,58 +47,43 @@ export const emptyCart = () => {
 //convert any contents of a cart the user had assembled before logging in into shopping items.
 //it will need to fetch any shoppingItems with cart status in the databse for that user.  They will need to be added to the cart array in the reducer.
 
-export const goAddShoppingItem = (item, userId) => {
+export const goAddShoppingItem = (item, userId, quantity) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
       const { data: product } = await axios.post(
-        `/api/users/${userId}/cart/${item.id}`,
+        `/api/shoppingItems/cart/${userId}`,
         {
           headers: {
             authorization: token,
           },
+          itemId: item.id,
+          quantity: quantity,
         }
       );
-      //at the moment we haven't dispateched the product returned from the database because
-      //we already have the item object from the component.
-      //this axios call is made to the shoppingItem table rather than the product/InventoryItem table.  Therefore it could be tedious on the backend to make use of a join to get an item/product object from the db that we already have access to on the front end.
-      dispatch(addItem(item));
+
+      dispatch(addItem(product));
     } catch (err) {
       console.log(err);
     }
   };
 };
 
-export const goIncrementShoppingItem = (item, userId) => {
+export const goUpdateShoppingItemQty = (item, userId, quantity) => {
   return async (dispatch) => {
     try {
+      const token = window.localStorage.getItem(TOKEN);
       const { data: product } = await axios.put(
-        `/api/user/${userId}/cart/${item.id}/increment`,
+        `/api/shoppingItems/cart/${userId}`,
         {
           headers: {
             authorization: token,
           },
+          itemId: item.id,
+          quantity: quantity,
         }
       );
-      dispatch(incrementItem(item));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-
-export const goDecrementShoppingItem = (item, userId) => {
-  return async (dispatch) => {
-    try {
-      const { data: product } = await axios.put(
-        `/api/user/${userId}/cart/${item.id}/decrement`,
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
-      dispatch(decrementItem(item));
+      dispatch(updateItemQty(product, product.qty));
     } catch (err) {
       console.log(err);
     }
@@ -183,27 +161,14 @@ export default (state = initialState, action) => {
       return state.filter((item) => {
         return item.id !== action.item.id;
       });
-    case INCREMENT_ITEM:
+    case UPDATE_ITEM_QTY:
       return state.map((item) => {
         let newItem = { ...item }; //make a copy of the item so we don't leave side effects on the old item in the previous state.
 
         if (item.id === action.item.id) {
-          newItem.qty++;
+          newItem.qty = action.qty;
         }
         return newItem;
-      });
-    case DECREMENT_ITEM:
-      let newState = state.map((item) => {
-        let newItem = { ...item };
-
-        if (item.id === action.item.id) {
-          newItem.qty--;
-        }
-        return newItem;
-      });
-      //if the qty of any item is now zero it should be filtered out of the cart
-      return newState.filter((item) => {
-        return item.qty;
       });
     case EMPTY_CART:
       return [];

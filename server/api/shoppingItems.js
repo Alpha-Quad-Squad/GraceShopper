@@ -4,16 +4,42 @@ const {
 } = require("../db");
 module.exports = router;
 
-//inventoryItem.shoppingItem.quantity can be used to access the quantity of an item in the backend cart.
-//this function can take a backend end cart, and turn it into a front end cart (where the qty value is a property directly on each product in the cart)
-//this function is declared here so it can be used in multiple routes.
-// const makeFrontEndCart = (backEndCart) => {
-//   return backEndCart.map((cartItem) => {
-//     let quantity = cartItem.shoppingItem.quantity;
-//     cartItem.qty = quantity;
-//     return cartItem;
-//   });
-// };
+//this function takes a backend inventoryItem (with an associated shopping item), and turns it into a front end cart item (where the qty value is a property directly on the item object rather than nested in the shopping item product in the cart)
+/*  backend cart:
+[
+    {   id:
+        name:
+        shoppingItem:{
+            qty:
+    }}
+
+]
+frontend cart:
+[
+    {
+        id:,
+        name:,
+        etc...,
+        qty:1
+    },
+*/
+
+const makeFrontEndCartItem = (inventoryItem) => {
+  return {
+    id: inventoryItem.id,
+    itemName: inventoryItem.itemName,
+    itemDescription: inventoryItem.itemDescription,
+    itemPrice: inventoryItem.itemPrice,
+    itemImageUrl: inventoryItem.itemImageUrl,
+    qty: inventoryItem.shoppingItem.quantity,
+  };
+};
+
+const makeFrontEndCart = (backEndCart) => {
+  return backEndCart.map((cartItem) => {
+    return makeFrontEndCartItem(cartItem);
+  });
+};
 
 //get all the inventoryItems and their quantities that are shopping items in a purchase with cart status for a given user.
 router.get("/cart/:userId", async (req, res, next) => {
@@ -31,9 +57,9 @@ router.get("/cart/:userId", async (req, res, next) => {
 
     //inventoryItem.shoppingItem.quantity can be used to access the quantity of this item in the cart
     //use this information to reformat the cart to be like the cart on the front end.
-    //let frontEndCart = makeFrontEndCart(userCart);
+    let frontEndCart = makeFrontEndCart(userCart);
 
-    res.json(userCart);
+    res.json(frontEndCart);
   } catch (err) {
     next(err);
   }
@@ -45,7 +71,7 @@ router.post("/cart/:userId", async (req, res, next) => {
     //req.body will include the item id and the qty
     let { itemId, quantity } = req.body;
     const userId = req.params.userId;
-    const inventoryItem = await InventoryItem.findByPk(itemId);
+    let inventoryItem = await InventoryItem.findByPk(itemId);
 
     //does this user already have a cart?
     let [userPurchase] = await Purchase.findAll({
@@ -86,7 +112,9 @@ router.post("/cart/:userId", async (req, res, next) => {
       });
     }
 
-    //update our variable so that it now has the new shoppingItem attached to it.
+    //update our variables so that
+    //the cart now has the updated shoppingItem attached to it.
+    // the inventory item has the updated qty from the database.
     [userPurchase] = await Purchase.findAll({
       where: {
         userId: userId,
@@ -94,12 +122,15 @@ router.post("/cart/:userId", async (req, res, next) => {
       },
       include: InventoryItem,
     });
+    [inventoryItem] = userPurchase.inventoryItems.filter(
+      (item) => item.id === itemId
+    );
 
-    //extract the updated cart from the userPurchase.
-    let updatedCart = userPurchase.inventoryItems;
+    //reformat the inventoryItem to match a frontend cartItem
+    let updatedCartItem = makeFrontEndCartItem(inventoryItem);
 
-    //send the updated cart back to the front end.
-    res.json(updatedCart);
+    //send back the updated cart item
+    res.json(updatedCartItem);
   } catch (error) {
     next(error);
   }
@@ -129,7 +160,9 @@ router.put("/cart/:userId", async (req, res, next) => {
       quantity: quantity,
     });
 
-    //update our variable so that it now has the updated shoppingItem attached to it.
+    //update our variables so that
+    //the cart now has the updated shoppingItem attached to it.
+    // the inventory item has the updated qty from the database.
     [userPurchase] = await Purchase.findAll({
       where: {
         userId: userId,
@@ -138,10 +171,15 @@ router.put("/cart/:userId", async (req, res, next) => {
       include: InventoryItem,
     });
 
-    //send back the updated cart
-    let updatedCart = userPurchase.inventoryItems;
+    [inventoryItem] = userPurchase.inventoryItems.filter(
+      (item) => item.id === itemId
+    );
 
-    res.json(updatedCart);
+    //reformat the inventoryItem to match a frontend cartItem
+    let updatedCartItem = makeFrontEndCartItem(inventoryItem);
+
+    //send back the updated cart item
+    res.json(updatedCartItem);
   } catch (err) {
     next(err);
   }

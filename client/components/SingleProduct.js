@@ -2,7 +2,12 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
-import { addItem, incrementItem, goAddShoppingItem } from "../store/cart";
+import {
+  addItem,
+  updateItemQty,
+  goAddShoppingItem,
+  goUpdateShoppingItemQty,
+} from "../store/cart";
 
 const CART = "cart";
 
@@ -46,16 +51,16 @@ const SingleProduct = (props) => {
       //if it in the cart, increment its qty in the store / db.
       if (userId) {
         //if user is logged in dispatch thunk to update db.
-        dispatch(goIncrementShoppingItem(product, userId));
+        dispatch(goUpdateShoppingItemQty(product, userId, quantity + 1));
       } else {
         //if not loggedIn dispatch action to update the qty in store only.
-        dispatch(incrementItem(product));
+        dispatch(updateItemQty(product));
       }
     } else {
       //if item is not in the cart, add it to the cart in the store / db (with qty 1)
       if (userId) {
         //if user is logged in dispatch thunk to update db to add it with qty1.
-        dispatch(goAddShoppingItem(product, userId));
+        dispatch(goAddShoppingItem(product, userId, quantity + 1));
       } else {
         //if not loggedIn dispatch action to update the store only.
         dispatch(addItem(product));

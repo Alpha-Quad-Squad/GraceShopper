@@ -2,12 +2,10 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  incrementItem,
+  updateItemQty,
   removeItem,
-  decrementItem,
   emptyCart,
-  goIncrementShoppingItem,
-  goDecrementShoppingItem,
+  goUpdateShoppingItemQty,
   goRemoveShoppingItem,
 } from "../store/cart";
 import SingleProductSnapshot from "./SingleProductSnapshot";
@@ -49,20 +47,20 @@ const Cart = (props) => {
   const increment = (item) => {
     if (userId) {
       //if user is logged in dispatch thunk to update db.
-      dispatch(goIncrementShoppingItem(item, userId));
+      dispatch(goUpdateShoppingItemQty(item, userId, item.qty + 1));
     } else {
       //if not loggedIn dispatch action to update the qty in store only.
-      dispatch(incrementItem(item));
+      dispatch(updateItemQty(item, item.qty + 1));
     }
   };
 
   const decrement = (item) => {
     if (userId) {
       //if user is logged in dispatch thunk to update db.
-      dispatch(goDecrementShoppingItem(item, userId));
+      dispatch(goUpdateShoppingItemQty(item, userId, item.qty - 1));
     } else {
       //if not loggedIn dispatch action to update the qty in store only.
-      dispatch(decrementItem(item));
+      dispatch(updateItemQty(item, item.qty - 1));
     }
   };
 
