@@ -1,0 +1,103 @@
+
+.checkout-form {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ababab;
+    font-size: 15px;
+    margin-top: 3%;
+    padding: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 10px rgba(0,0,0,0.06);
+}
+
+.state-zip-exp-cvv-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.Billing-Address-Payment-div {
+    width:100%;
+    margin: 1%;
+}
+
+.Billing-Address-Payment-div > label {
+    
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+.state-zip-div {
+    width: 100%;
+    margin: 1%;
+}
+
+.state-zip-div > label {
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.exp-cvv-div {
+    width: 100%;
+    margin: 1%;
+}
+
+.exp-cvv-div > label{
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.submit-payment-cancel-btn-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6%;
+    width:100%
+  }
+
+  .submit-payment-button {
+    background-color: rgb(40, 156, 191);
+    font-size: 18px;
+    color: white;
+    padding: 15px 0;
+    margin: 5% 0;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    width: 80%;
+    border-radius: 10px;
+    border: 1px solid #ababab;
+  }
+  
+  .submit-payment-button:hover {
+    opacity: 0.8;
+  }
+
+  .cancel-checkout-button {
+    background-color: #f56a1f;
+    color: white;
+    width: 80%;
+    padding: 15px 0;
+    margin: 5% 0;
+    margin-top: 2%;
+    border: none;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #ababab;
+  }
+
+  .cancel-checkout-button:hover {
+    opacity: 0.8;
+  }
+
+  .hideDiv {
+    display: none;
+    visibility: hidden; 
+  }
+
+  .checkbox-div {
+      margin-top: 5%;
+      font-size: 16px;
+  }
