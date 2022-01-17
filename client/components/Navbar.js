@@ -18,6 +18,9 @@ const Navbar = () => {
     dispatch(logout());
   };
 
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const adminUserPortalLink = isAdmin && <Link to='/users'>Admin Portal</Link>
+
   return (
     <div>
       <nav>
@@ -28,6 +31,7 @@ const Navbar = () => {
               Grace Shopper
             </Link>
             <p className="welcome-user">Welcome {username}</p>
+            {adminUserPortalLink}
             <a href="#" onClick={handleClick} className="navbar-link">
               Logout
             </a>

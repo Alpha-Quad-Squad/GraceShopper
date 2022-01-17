@@ -10,6 +10,7 @@ import Cart from "./components/Cart";
 import ManyProducts from "./components/ManyProducts";
 import Checkout from "./components/Checkout";
 import PostCheckoutRedirect from "./components/postCheckoutRedirect"
+import AllUsers from "./components/AllUsers";
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ const Routes = () => {
     return !!state.auth.id;
   });
 
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const adminUserPortal = isAdmin && <Route exact path='/users' component={AllUsers} />
+
   return (
     <div>
       {isLoggedIn ? (
@@ -31,6 +35,7 @@ const Routes = () => {
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/postCheckoutRedirect" component={PostCheckoutRedirect} />
           <Route exact path="/products" component={ManyProducts} />
+          {adminUserPortal}
           <Redirect to="/home" />
         </Switch>
       ) : (
