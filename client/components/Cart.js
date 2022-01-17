@@ -7,6 +7,7 @@ import {
   emptyCart,
   goUpdateShoppingItemQty,
   goRemoveShoppingItem,
+  goEmptyCart,
 } from "../store/cart";
 import SingleProductSnapshot from "./SingleProductSnapshot";
 import { openModal } from "../store/modal";
@@ -80,6 +81,7 @@ const Cart = (props) => {
       dispatch(goEmptyCart(userId));
     } else {
       //if not loggedIn dispatch action to remove item in store only.
+
       dispatch(emptyCart());
     }
   };

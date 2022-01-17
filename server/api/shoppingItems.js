@@ -137,7 +137,7 @@ router.post("/cart/:userId", async (req, res, next) => {
 });
 
 //update the quantity of a particular item in a user's cart
-router.put("/cart/:userId", async (req, res, next) => {
+router.put("/cart/:userId/quantity-update", async (req, res, next) => {
   try {
     let { itemId, quantity } = req.body;
     const userId = req.params.userId;
@@ -187,8 +187,8 @@ router.put("/cart/:userId", async (req, res, next) => {
 
 //update a cart at the time of user log in to add everything that had been added to the cart on the frontend prior to log in to the databse cart
 
-//remove an item from the cart
-router.delete("/cart/:userId", async (req, res, next) => {
+//update the cart by removing an item.
+router.put("/cart/:userId/remove-item", async (req, res, next) => {
   try {
     let { itemId } = req.body;
     const userId = req.params.userId;
@@ -204,8 +204,9 @@ router.delete("/cart/:userId", async (req, res, next) => {
 
     //identify the item in the purchase which needs to be removed from the cart
     let cart = userPurchase.inventoryItems;
-    let [inventoryItem] = cart.filter((item) => item.id === itemId);
 
+    let [inventoryItem] = cart.filter((item) => item.id === itemId);
+    //console.log("inventoryItem to be deleted", inventoryItem);
     //remove the associate shopping item
     let shoppingItem = inventoryItem.shoppingItem;
     await shoppingItem.destroy();
@@ -219,8 +220,8 @@ router.delete("/cart/:userId", async (req, res, next) => {
       include: InventoryItem,
     });
 
-    //send back the updated cart
-    let updatedCart = userPurchase.inventoryItems;
+    //send back the updated cart once it has been reformatted to match the front end.
+    let updatedCart = makeFrontEndCart(userPurchase.inventoryItems);
 
     res.json(updatedCart);
   } catch (error) {
@@ -229,4 +230,20 @@ router.delete("/cart/:userId", async (req, res, next) => {
 });
 
 //empties an entire cart for a user
-router.delete("/cart/:userId");
+router.delete("/cart/:userId", async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    //obtain the purchase.
+    [userPurchase] = await Purchase.findAll({
+      where: {
+        userId: userId,
+        status: "cart",
+      },
+      include: InventoryItem,
+    });
+    await userPurchase.destroy();
+    res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
+});

@@ -7,12 +7,20 @@ const TOKEN = "token";
 const CART = "cart";
 
 //action types
+const SET_CART = "SET_CART";
 const ADD_ITEM = "ADD_ITEM";
 const REMOVE_ITEM = "REMOVE_ITEM";
 const UPDATE_ITEM_QTY = "UPDATE_ITEM_QTY";
 const EMPTY_CART = "EMPTY_CART";
 
 //this assumes the app will never try to add an item to the cart that is already in the cart.  there should be a check for that in the component before this result of this action creator is dispatched.
+
+export const setCart = (cart) => {
+  return {
+    type: SET_CART,
+    cart,
+  };
+};
 export const addItem = (item) => {
   return {
     type: ADD_ITEM,
@@ -47,6 +55,25 @@ export const emptyCart = () => {
 //convert any contents of a cart the user had assembled before logging in into shopping items.
 //it will need to fetch any shoppingItems with cart status in the databse for that user.  They will need to be added to the cart array in the reducer.
 
+export const fetchCart = (userId) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem(TOKEN);
+      const { data: cart } = await axios.get(
+        `/api/shoppingItems/cart/${userId}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      dispatch(setCart(cart));
+    } catch (error) {
+      console.log("there was a problem fetching this user's cart", error);
+    }
+  };
+};
+
 export const goAddShoppingItem = (item, userId, quantity) => {
   return async (dispatch) => {
     try {
@@ -74,7 +101,7 @@ export const goUpdateShoppingItemQty = (item, userId, quantity) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
       const { data: product } = await axios.put(
-        `/api/shoppingItems/cart/${userId}`,
+        `/api/shoppingItems/cart/${userId}/quantity-update`,
         {
           headers: {
             authorization: token,
@@ -93,16 +120,18 @@ export const goUpdateShoppingItemQty = (item, userId, quantity) => {
 export const goRemoveShoppingItem = (item, userId) => {
   return async (dispatch) => {
     try {
-      const { data: product } = await axios.delete(
-        `/api/user/${userId}/cart/${item.id}`,
+      const token = window.localStorage.getItem(TOKEN);
+      const { data: newCart } = await axios.put(
+        `/api/shoppingItems/cart/${userId}/remove-item`,
         {
           headers: {
             authorization: token,
           },
+          itemId: item.id,
         }
       );
 
-      dispatch(removeItem(item));
+      dispatch(setCart(newCart));
     } catch (err) {
       console.log(err);
     }
@@ -112,16 +141,15 @@ export const goRemoveShoppingItem = (item, userId) => {
 export const goEmptyCart = (userId) => {
   return async (dispatch) => {
     try {
-      //we do not yet have a route for emptying the cart.  Its not even a tier 1 requirement.
-      //we could make this thunk to loop over each object in the cart and make a delete axios call for each of those items.   That seems suboptimal though.
-      // const { data: product } = await axios.delete(
-      //   `/api/user/${userId}/cart/${item.id}`,
-      //   {
-      //     headers: {
-      //       authorization: token,
-      //     },
-      //   }
-      // );
+      const token = window.localStorage.getItem(TOKEN);
+      const { data: newCart } = await axios.delete(
+        `/api/shoppingItems/cart/${userId}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
 
       dispatch(emptyCart());
     } catch (err) {
@@ -153,6 +181,8 @@ it only includes products that have been added to the cart.
 //reducer
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_CART:
+      return action.cart;
     case ADD_ITEM:
       let newItem = { ...action.item }; //I'm taking care to make a copy of the item so we don't leave side effects on the action.item
       newItem.qty = 1;
