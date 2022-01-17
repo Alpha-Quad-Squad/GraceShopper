@@ -81,9 +81,9 @@ const Cart = (props) => {
       dispatch(goEmptyCart(userId));
     } else {
       //if not loggedIn dispatch action to remove item in store only.
-
       dispatch(emptyCart());
     }
+    window.localStorage.removeItem(CART);
   };
 
   const cartTotal = currentCart.reduce((passedIn, item) => {

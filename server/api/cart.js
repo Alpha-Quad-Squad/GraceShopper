@@ -42,7 +42,7 @@ const makeFrontEndCart = (backEndCart) => {
 };
 
 //get all the inventoryItems and their quantities that are shopping items in a purchase with cart status for a given user.
-router.get("/cart/:userId", async (req, res, next) => {
+router.get("/:userId", async (req, res, next) => {
   try {
     const id = req.params.userId;
     const [userPurchases] = await Purchase.findAll({
@@ -66,7 +66,7 @@ router.get("/cart/:userId", async (req, res, next) => {
 });
 
 //add an item to the shopping cart (or if it's already in the cart update its qty)
-router.post("/cart/:userId", async (req, res, next) => {
+router.post("/:userId", async (req, res, next) => {
   try {
     //req.body will include the item id and the qty
     let { itemId, quantity } = req.body;
@@ -137,7 +137,7 @@ router.post("/cart/:userId", async (req, res, next) => {
 });
 
 //update the quantity of a particular item in a user's cart
-router.put("/cart/:userId/quantity-update", async (req, res, next) => {
+router.put("/:userId/quantity-update", async (req, res, next) => {
   try {
     let { itemId, quantity } = req.body;
     const userId = req.params.userId;
@@ -188,7 +188,7 @@ router.put("/cart/:userId/quantity-update", async (req, res, next) => {
 //update a cart at the time of user log in to add everything that had been added to the cart on the frontend prior to log in to the databse cart
 
 //update the cart by removing an item.
-router.put("/cart/:userId/remove-item", async (req, res, next) => {
+router.put("/:userId/remove-item", async (req, res, next) => {
   try {
     let { itemId } = req.body;
     const userId = req.params.userId;
@@ -230,7 +230,7 @@ router.put("/cart/:userId/remove-item", async (req, res, next) => {
 });
 
 //empties an entire cart for a user
-router.delete("/cart/:userId", async (req, res, next) => {
+router.delete("/:userId", async (req, res, next) => {
   try {
     const userId = req.params.userId;
     //obtain the purchase.

@@ -59,14 +59,11 @@ export const fetchCart = (userId) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
-      const { data: cart } = await axios.get(
-        `/api/shoppingItems/cart/${userId}`,
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
+      const { data: cart } = await axios.get(`/api/cart/${userId}`, {
+        headers: {
+          authorization: token,
+        },
+      });
       dispatch(setCart(cart));
     } catch (error) {
       console.log("there was a problem fetching this user's cart", error);
@@ -78,16 +75,13 @@ export const goAddShoppingItem = (item, userId, quantity) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
-      const { data: product } = await axios.post(
-        `/api/shoppingItems/cart/${userId}`,
-        {
-          headers: {
-            authorization: token,
-          },
-          itemId: item.id,
-          quantity: quantity,
-        }
-      );
+      const { data: product } = await axios.post(`/api/cart/${userId}`, {
+        headers: {
+          authorization: token,
+        },
+        itemId: item.id,
+        quantity: quantity,
+      });
 
       dispatch(addItem(product));
     } catch (err) {
@@ -101,7 +95,7 @@ export const goUpdateShoppingItemQty = (item, userId, quantity) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
       const { data: product } = await axios.put(
-        `/api/shoppingItems/cart/${userId}/quantity-update`,
+        `/api/cart/${userId}/quantity-update`,
         {
           headers: {
             authorization: token,
@@ -122,7 +116,7 @@ export const goRemoveShoppingItem = (item, userId) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
       const { data: newCart } = await axios.put(
-        `/api/shoppingItems/cart/${userId}/remove-item`,
+        `/api/cart/${userId}/remove-item`,
         {
           headers: {
             authorization: token,
@@ -142,14 +136,11 @@ export const goEmptyCart = (userId) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
-      const { data: newCart } = await axios.delete(
-        `/api/shoppingItems/cart/${userId}`,
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
+      const { data: newCart } = await axios.delete(`/api/cart/${userId}`, {
+        headers: {
+          authorization: token,
+        },
+      });
 
       dispatch(emptyCart());
     } catch (err) {
