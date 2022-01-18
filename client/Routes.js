@@ -9,7 +9,7 @@ import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
 import ManyProducts from "./components/ManyProducts";
 import Checkout from "./components/Checkout";
-import PostCheckoutRedirect from "./components/postCheckoutRedirect"
+import PostCheckoutRedirect from "./components/PostCheckoutRedirect";
 import AllUsers from "./components/AllUsers";
 
 const Routes = () => {
@@ -23,7 +23,9 @@ const Routes = () => {
   });
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
-  const adminUserPortal = isAdmin && <Route exact path='/users' component={AllUsers} />
+  const adminUserPortal = isAdmin && (
+    <Route exact path="/users" component={AllUsers} />
+  );
 
   return (
     <div>
@@ -33,7 +35,11 @@ const Routes = () => {
           <Route exact path="/products/:productId" component={SingleProduct} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/checkout" component={Checkout} />
-          <Route exact path="/postCheckoutRedirect" component={PostCheckoutRedirect} />
+          <Route
+            exact
+            path="/postCheckoutRedirect"
+            component={PostCheckoutRedirect}
+          />
           <Route exact path="/products" component={ManyProducts} />
           {adminUserPortal}
           <Redirect to="/home" />
@@ -48,7 +54,11 @@ const Routes = () => {
           <Route exact path="/products/:productId" component={SingleProduct} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/checkout" component={Checkout} />
-          <Route exact path="/postCheckoutRedirect" component={PostCheckoutRedirect} />
+          <Route
+            exact
+            path="/postCheckoutRedirect"
+            component={PostCheckoutRedirect}
+          />
           <Route exact path="/products" component={ManyProducts} />
         </Switch>
       )}
