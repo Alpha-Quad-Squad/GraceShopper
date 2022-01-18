@@ -97,12 +97,12 @@ const Cart = (props) => {
     <>
       <Modal />
       {currentCart.map((item) => {
-        let disabled = true;
+        let decrementDisabled = true;
         if(item.qty > 1){
-          disabled = false;
+          decrementDisabled = false;
         }
         else {
-          disabled = true
+          decrementDisabled = true
         }
         return (
           <div key={item.id} className="cart-items-list">
@@ -113,7 +113,7 @@ const Cart = (props) => {
               </div>
               <div className="increment-decrement-btns">
                 <button onClick={() => increment(item)}>+</button>
-                <button onClick={() => decrement(item)} disabled={disabled}>-</button>
+                <button onClick={() => decrement(item)} disabled={decrementDisabled}>-</button>
               </div>
               <button onClick={() => remove(item)} className="cart-remove-item-btn">remove item</button>
             </div>
