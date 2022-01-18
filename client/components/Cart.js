@@ -92,10 +92,18 @@ const Cart = (props) => {
     return passedIn + lineTotal;
   }, 0);
 
+  // disabled is set to true because each ShoppingItem is initialized with a quantity >= 1.
   return (
     <>
       <Modal />
       {currentCart.map((item) => {
+        let disabled = true;
+        if(item.qty > 1){
+          disabled = false;
+        }
+        else {
+          disabled = true
+        }
         return (
           <div key={item.id} className="cart-items-list">
             <SingleProductSnapshot itemData={item} />
@@ -105,7 +113,7 @@ const Cart = (props) => {
               </div>
               <div className="increment-decrement-btns">
                 <button onClick={() => increment(item)}>+</button>
-                <button onClick={() => decrement(item)}>-</button>
+                <button onClick={() => decrement(item)} disabled={disabled}>-</button>
               </div>
               <button onClick={() => remove(item)} className="cart-remove-item-btn">remove item</button>
             </div>
