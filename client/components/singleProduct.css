@@ -1,23 +1,31 @@
-#singleProductContainer{
+#singleProductContainer {
   margin: auto;
   width: 90%;
   padding: 10px;
-  text-align: center;
 }
 
 .singleProductTitle {
-
 }
 .singleProductImage {
   width: 20%;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
 
+.singleProductImageAndDescription {
+  display: flex;
 }
 .singleProductDescription {
+}
 
+.singleProductDetails {
+  margin: 20px;
+  width: 75%;
 }
 .singleProductPrice {
+}
 
+.addButton {
+  width: 200px;
 }
