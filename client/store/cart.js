@@ -56,6 +56,7 @@ export const emptyCart = () => {
 //it will need to fetch any shoppingItems with cart status in the databse for that user.  They will need to be added to the cart array in the reducer.
 
 export const fetchCart = (userId) => {
+  console.log('fetchcart beginning')
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
@@ -64,25 +65,29 @@ export const fetchCart = (userId) => {
           authorization: token,
         },
       });
-      let cartMap = cart.map(item=> {
-        return item.itemName
-      })
-      let guestCart = (JSON.parse(window.localStorage.getItem(CART)));
-      guestCart.forEach(item => {
-        if ( cartMap.includes(item.itemName)) {
-          for ( let i = 0 ; i < cart.length; i ++ ) {
-            if ( cart[i].itemName === item.itemName ) {
-              cart[i].qty+=1
-            }
-          }
-        } else {
-          cart.push(item)
-        }
-      })
-      dispatch(setCart(cart));
-      
+      // let cartMap = cart.map(item=> {
+      //   return item.itemName
+      // })
+      // let guestCart = (JSON.parse(window.localStorage.getItem(CART)));
+      // guestCart.forEach(item => {
+      //   if ( cartMap.includes(item.itemName)) {
+      //     for ( let i = 0 ; i < cart.length; i ++ ) {
+      //       if ( cart[i].itemName === item.itemName ) {
+      //         cart[i].qty+=1
+      //         //we need to update the DB for this shopping item.
+      //       }
+      //     }
+      //   } else {
+      //     cart.push(item)
+      //   }
+      // })
+      // // DOTHINGHERE
 
-      
+      dispatch(setCart(cart));
+      console.log('fetchcart ending')
+
+
+
     } catch (error) {
       console.log("there was a problem fetching this user's cart", error);
     }
@@ -90,7 +95,9 @@ export const fetchCart = (userId) => {
 };
 
 export const goAddShoppingItem = (item, userId, quantity) => {
+  console.log("goAddShoppingItem", item.itemName)
   return async (dispatch) => {
+    // console.log("***abc item***", item)
     try {
       const token = window.localStorage.getItem(TOKEN);
       const { data: product } = await axios.post(`/api/cart/${userId}`, {

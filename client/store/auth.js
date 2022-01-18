@@ -32,14 +32,18 @@ export const me = () => async (dispatch) => {
     const frontEndCart = JSON.parse(window.localStorage.getItem(CART));
     if (frontEndCart) {
       //go add the frontend cart to backEnd
-      frontEndCart.forEach((product) => {
+      frontEndCart.forEach(async (product) => {
+        console.log('product', product)
         dispatch(goAddShoppingItem(product, id, product.qty));
       });
     }
 
-    //get backend cart for this user.
-    dispatch(fetchCart(id));
-    return dispatch(setAuth(auth));
+    // //get backend cart for this user.
+    // return (dispatch) => {
+      dispatch(fetchCart(id));
+      dispatch(setAuth(auth));
+    // }
+    // return
   }
 };
 
