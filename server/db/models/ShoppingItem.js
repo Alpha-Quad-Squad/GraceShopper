@@ -5,6 +5,9 @@ const ShoppingItem = db.define("shoppingItem", {
   quantity: {
     type: Sequelize.INTEGER,
   },
+  validate: {
+    min: 1
+  }
 });
 
 //Instance and Prototype Methods.
