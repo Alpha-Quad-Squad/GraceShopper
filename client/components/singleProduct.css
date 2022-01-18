@@ -1,0 +1,23 @@
+#singleProductContainer{
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+  text-align: center;
+}
+
+.singleProductTitle {
+
+}
+.singleProductImage {
+  width: 20%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.singleProductDescription {
+
+}
+.singleProductPrice {
+
+}

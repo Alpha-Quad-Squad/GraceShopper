@@ -8,6 +8,7 @@ import {
   goAddShoppingItem,
   goUpdateShoppingItemQty,
 } from "../store/cart";
+import './singleProduct.css'
 
 const CART = "cart";
 
@@ -75,16 +76,12 @@ const SingleProduct = (props) => {
 
   return (
     <>
-      <div>
-        <p>{product.itemName}</p>
-        <div>
-          <img src={product.itemImageUrl} />
-          <div>
-            <p>{product.itemDescription}</p>
-            <p>{product.itemPrice}</p>
-            <button onClick={addToCart}>Add to Cart</button>
-          </div>
-        </div>
+      <div id="singleProductContainer">
+        <h1 className="singleProductTitle">{product.itemName}</h1>
+        <img className="singleProductImage" src={product.itemImageUrl} />
+        <p className="singleProductDescription">{product.itemDescription}</p>
+        <p className="singleProductPrice">{product.itemPrice}</p>
+        <button onClick={addToCart}>Add to Cart</button>
       </div>
     </>
   );
