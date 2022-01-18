@@ -349,6 +349,486 @@ async function seed() {
       itemImageUrl:
         "https://images-na.ssl-images-amazon.com/images/I/81AA35r7YLL.jpg",
     }),
+    InventoryItem.create({
+      itemName: "Nineteen Eighty-Four by George Orwell",
+      itemDescription:
+        "Nineteen Eighty-Four is a dystopian social science fiction novel and cautionary tale written by English writer George Orwell. It was published on 8 June 1949 by Secker & Warburg as Orwell's ninth and final book completed in his lifetime.",
+      itemPrice: 10.45,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91Q56n9K99L.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Catch-22 by Joseph Heller",
+      itemDescription:
+        "Catch-22 is a satirical war novel by American author Joseph Heller. He began writing it in 1953; the novel was first published in 1961.",
+      itemPrice: 12.22,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71CHQmWDBHL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Lord of the Rings by J.R.R. Tolkien",
+      itemDescription:
+        "The Lord of the Rings is an epic high-fantasy novel by English author and scholar J. R. R. Tolkien. Set in Middle-earth, intended to be Earth at some distant time in the past, the story began as a sequel to Tolkien's 1937 children's book The Hobbit, but eventually developed into a much larger work.",
+      itemPrice: 17.89,
+      itemImageUrl:
+        "https://m.media-amazon.com/images/I/51bJhsl5VmL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Jane Eyre by Charlotte Brontë",
+      itemDescription:
+        "Jane Eyre is a novel by English writer Charlotte Brontë, published under the pen name \"Currer Bell\", on 16 October 1847, by Smith, Elder & Co. of London. The first American edition was published the following year by Harper & Brothers of New York.",
+      itemPrice: 8.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91zU70Aw9IS.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "To Kill a Mockingbird by Harper Lee",
+      itemDescription:
+        "To Kill a Mockingbird is a novel by the American author Harper Lee. It was published in 1960 and was instantly successful. In the United States, it is widely read in high schools and middle schools. To Kill a Mockingbird has become a classic of modern American literature, winning the Pulitzer Prize.",
+      itemPrice: 15.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71FxgtFKcQL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Gone with the Wind by Margaret Mitchell",
+      itemDescription:
+        "Gone with the Wind is a novel by American writer Margaret Mitchell, first published in 1936. The story is set in Clayton County and Atlanta, both in Georgia, during the American Civil War and Reconstruction Era.",
+      itemPrice: 14.79,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/51pZagJtHdL._SX308_BO1,204,203,200_.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Wuthering Heights by Emily Brontë",
+      itemDescription:
+        "Wuthering Heights is an 1847 novel by Emily Brontë, initially published under the pseudonym Ellis Bell. It concerns two families of the landed gentry living on the West Yorkshire moors, the Earnshaws and the Lintons, and their turbulent relationships with Earnshaw's adopted son, Heathcliff.",
+      itemPrice: 6.19,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71ogwlE3YNL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Sound and the Fury by William Faulkner",
+      itemDescription:
+        "The Sound and the Fury is a novel by the American author William Faulkner. It employs several narrative styles, including stream of consciousness. Published in 1929, The Sound and the Fury was Faulkner's fourth novel, and was not immediately successful.",
+      itemPrice: 13.49,
+      itemImageUrl:
+        "https://m.media-amazon.com/images/I/51Az52fa1zL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Crime and Punishment by Fyodor Dostoyevsky",
+      itemDescription:
+        "Crime and Punishment is a novel by the Russian author Fyodor Dostoevsky. It was first published in the literary journal The Russian Messenger in twelve monthly installments during 1866. It was later published in a single volume.",
+      itemPrice: 15.95,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/81b6e-dc41L.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Lion, the Witch, and the Wardrobe by C.S. Lewis",
+      itemDescription:
+        "The Lion, the Witch and the Wardrobe is a fantasy novel for children by C. S. Lewis, published by Geoffrey Bles in 1950. It is the first published and best known of seven novels in The Chronicles of Narnia. Among all the author's books, it is also the most widely held in libraries.",
+      itemPrice: 21.37,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/51erHMLhIzL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Hobbit by J.R.R. Tolkien",
+      itemDescription:
+        "The Hobbit, or There and Back Again is a children's fantasy novel by English author J. R. R. Tolkien. It was published in 1937 to wide critical acclaim, being nominated for the Carnegie Medal and awarded a prize from the New York Herald Tribune for best juvenile fiction.",
+      itemPrice: 12.92,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/710+HcoP38L.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Harry Potter and the Sorcerer's Stone by J.K. Rowling",
+      itemDescription:
+        "Harry Potter and the Philosopher's Stone is a fantasy novel written by British author J. K. Rowling.",
+      itemPrice: 6.98,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/51DF6ZR8G7L._SX329_BO1,204,203,200_.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Adventures of Huckleberry Finn by Mark Twain",
+      itemDescription:
+        "Adventures of Huckleberry Finn or as it is known in more recent editions, The Adventures of Huckleberry Finn, is a novel by American author Mark Twain, which was first published in the United Kingdom in December 1884 and in the United States in February 1885.",
+      itemPrice: 7.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71iBE54utML.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Moby-Dick by Herman Melville",
+      itemDescription:
+        "Moby-Dick; or, The Whale is an 1851 novel by American writer Herman Melville. The book is the sailor Ishmael's narrative of the obsessive quest of Ahab, captain of the whaling ship Pequod, for revenge on Moby Dick, the giant white sperm whale that on the ship's previous voyage bit off Ahab's leg at the knee.",
+      itemPrice: 13.45,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/41VnFKC9srL._SX346_BO1,204,203,200_.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Emma by Jane Austen",
+      itemDescription:
+        "Emma, by Jane Austen, is a novel about youthful hubris and romantic misunderstandings. It is set in the fictional country village of Highbury and the surrounding estates of Hartfield, Randalls and Donwell Abbey, and involves the relationships among people from a small number of families.",
+      itemPrice: 7.51,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/61HsxPxHcCL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Of Mice and Men by John Steinbeck",
+      itemDescription:
+        "Of Mice and Men is a novella written by John Steinbeck. Published in 1937, it narrates the experiences of George Milton and Lennie Small, two displaced migrant ranch workers, who move from place to place in California in search of new job opportunities during the Great Depression in the United States.",
+      itemPrice: 20.30,
+      itemImageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/a/a8/Of_Mice_and_Men_%281937_1st_ed_dust_jacket%29.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "David Copperfield by Charles Dickens",
+      itemDescription:
+        "The Personal History, Adventures, Experience and Observation of David Copperfield the Younger of Blunderstone Rookery (Which He Never Meant to Publish on Any Account), commonly known as David Copperfield,[N 1] is a novel in the bildungsroman genre by Charles Dickens, narrated by the eponymous David Copperfield, detailing his adventures in his journey from infancy to maturity. It was first published as a serial in 1849 and 1850, and as a book in 1850.",
+      itemPrice: 9.99,
+      itemImageUrl:
+        "https://m.media-amazon.com/images/I/51tlnVxlLqL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "A Clockwork Orange by Anthony Burgess",
+      itemDescription:
+        "A Clockwork Orange is a dystopian satirical black comedy novel by English writer Anthony Burgess, published in 1962. It is set in a near-future society that has a youth subculture of extreme violence.",
+      itemPrice: 13.89,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/51FTcHNhQqL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "His Dark Materials by Philip Pullman",
+      itemDescription:
+        "His Dark Materials is a trilogy of fantasy novels by Philip Pullman consisting of Northern Lights, The Subtle Knife, and The Amber Spyglass. It follows the coming of age of two children, Lyra Belacqua and Will Parry, as they wander through a series of parallel universes.",
+      itemPrice: 15.59,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91zAe4EXmjL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Frankenstein by Mary Shelley",
+      itemDescription:
+        "Frankenstein; or, The Modern Prometheus is an 1818 novel written by English author Mary Shelley. Frankenstein tells the story of Victor Frankenstein, a young scientist who creates a sapient creature in an unorthodox scientific experiment.",
+      itemPrice: 7.79,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/81z7E0uWdtL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Charlotte's Web by E.B White",
+      itemDescription:
+        "Charlotte's Web is a book of children's literature by American author E. B. White and illustrated by Garth Williams; it was published on October 15, 1952, by Harper & Brothers. The novel tells the story of a livestock pig named Wilbur and his friendship with a barn spider named Charlotte.",
+      itemPrice: 15.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/61+3z1o4oUL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Portrait of a Lady by Jenry James",
+      itemDescription:
+        "The Portrait of a Lady is a novel by Henry James, first published as a serial in The Atlantic Monthly and Macmillan's Magazine in 1880–81 and then as a book in 1881. It is one of James's most popular novels and is regarded by critics as one of his finest.",
+      itemPrice: 10.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91rOmcxdxWL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Color Purple by Alice Walker",
+      itemDescription:
+        "The Color Purple is a 1982 epistolary novel by American author Alice Walker which won the 1983 Pulitzer Prize for Fiction and the National Book Award for Fiction. It was later adapted into a film and musical of the same name.",
+      itemPrice: 12.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71f6DRbcrsL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Stand by Stephen King",
+      itemDescription:
+        "The Stand is a post-apocalyptic dark fantasy novel written by American author Stephen King and first published in 1978 by Doubleday.",
+      itemPrice: 9.75,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/81c8No6mSPL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "One Flew Over the Cuckoo's Nest by Ken Kesey",
+      itemDescription:
+        "One Flew Over the Cuckoo's Nest is a novel written by Ken Kesey and published in 1962. Set in an Oregon psychiatric hospital, the narrative serves as a study of institutional processes and the human mind; including a critique of psychiatry, and a tribute to individualistic principles.",
+      itemPrice: 10.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91QerkARMLL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Stranger by Albert Camus",
+      itemDescription:
+        "The Stranger, also published in English as The Outsider, is a 1942 novella by French author Albert Camus. Its theme and outlook are often cited as examples of Camus' philosophy, absurdism, coupled with existentialism; though Camus personally rejected the latter label.",
+      itemPrice: 6.39,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/81GjCVSEDAL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Scarlet Letter by Nathaniel Hawthorne",
+      itemDescription:
+        "The Scarlet Letter: A Romance is a work of historical fiction by American author Nathaniel Hawthorne, published in 1850.",
+      itemPrice: 7.45,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/41F2W3Z9s6S._SX331_BO1,204,203,200_.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Love in the Time of Cholera by Gabriel Garcia Marquez",
+      itemDescription:
+        "Love in the Time of Cholera is a novel by Colombian Nobel prize winning author Gabriel García Márquez. The novel was first published in Spanish in 1985. Alfred A. Knopf published an English translation in 1988.",
+      itemPrice: 10.24,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/81OWK6olsoL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Dracula by Bram Stoker",
+      itemDescription:
+        "Dracula is a novel by Bram Stoker, published in 1897. As an epistolary novel, the narrative is related through letters, diary entries, and newspaper articles. It has no single protagonist, but opens with solicitor Jonathan Harker taking a business trip to stay at the castle of a Transylvanian noble, Count Dracula.",
+      itemPrice: 9.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91wOUFZCE+L.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Kite Runner by Khaled Hosseini",
+      itemDescription:
+        "The Kite Runner is the first novel by Afghan-American author Khaled Hosseini. Published in 2003 by Riverhead Books, it tells the story of Amir, a young boy from the Wazir Akbar Khan district of Kabul.",
+      itemPrice: 10.50,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/61hxlW+vz7L.jpg",
+    }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
+    // InventoryItem.create({
+    //   itemName: "",
+    //   itemDescription:
+    //     "",
+    //   itemPrice: 0,
+    //   itemImageUrl:
+    //     "",
+    // }),
   ]);
 
   console.log(`seeded ${users.length} users`.brightGreen);
