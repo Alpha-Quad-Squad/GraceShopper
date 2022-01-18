@@ -55,7 +55,6 @@ router.get("/:userId", async (req, res, next) => {
     const userCart = userPurchases.inventoryItems;
     //the userCart is an array of inventoryItems which are in the cart.
 
-    //inventoryItem.shoppingItem.quantity can be used to access the quantity of this item in the cart
     //use this information to reformat the cart to be like the cart on the front end.
     let frontEndCart = makeFrontEndCart(userCart);
 
