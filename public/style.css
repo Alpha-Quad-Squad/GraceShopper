@@ -31,36 +31,6 @@ label {
   display: inline-block;
 } */
 
-
-/* The following is for Item Snapshot Component - Ace */
-
-#snapshotImage {
-  flex: 1.5;
-  margin: 20px;
-  border-radius: 10px;
-}
-
-.itemDescription {
-  flex: 2;
-  padding: 10px;
-}
-
-.snapshot {
-  display: flex;
-  flex-direction: row;
-  width: 400px;
-  justify-content: center;
-  align-items: center;
-  /* border-radius: 20px; */
-  /* box-shadow: 5px 5px 20px black; */
-}
-
-/* .snapshot:active {
-  box-shadow: 2px 2px 8px black;
-  transform: translate(1%, 2%)
-} */
-/* ____________________________________________________________ */
-
 /* The followinf is for Many Products Component - Ace */
 
 #manyProductsContainer {
@@ -82,6 +52,7 @@ label {
 .itemLists {
   border-radius: 20px;
   box-shadow: 4px 4px 20px black;
+  
 }
 
 .itemLists:hover {

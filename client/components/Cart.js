@@ -12,6 +12,7 @@ import {
 import SingleProductSnapshot from "./SingleProductSnapshot";
 import { openModal } from "../store/modal";
 import Modal from "./Modal";
+import './cart.css'
 
 const CART = "cart";
 
@@ -96,24 +97,29 @@ const Cart = (props) => {
       <Modal />
       {currentCart.map((item) => {
         return (
-          <div key={item.id}>
+          <div key={item.id} className="cart-items-list">
             <SingleProductSnapshot itemData={item} />
-
-            <div>
-              X {item.qty} = $ {item.qty * item.itemPrice}
+            <div className="cart-items-right">
+              <div className="cart-items-right-qty-price">
+                <p>X {item.qty} = $ {item.qty * item.itemPrice}</p>
+              </div>
+              <div className="increment-decrement-btns">
+                <button onClick={() => increment(item)}>+</button>
+                <button onClick={() => decrement(item)}>-</button>
+              </div>
+              <button onClick={() => remove(item)} className="cart-remove-item-btn">remove item</button>
             </div>
-            <button onClick={() => increment(item)}>+</button>
-            <button onClick={() => decrement(item)}>-</button>
-            <button onClick={() => remove(item)}>remove item</button>
           </div>
         );
       })}
-      <div>Total = $ {cartTotal}</div>
-      <div>
-        <button onClick={() => empty()}>empty cart</button>
-      </div>
-      <div>
-        <button onClick={() => modalHandler()}>Proceed to checkout</button>
+      <div className="cart-bottom-divs">
+        <div className="empty-cart-btn-div">
+          <button onClick={() => empty()} className="empty-cart-btn">empty cart</button>
+        </div>
+        <div className="cart-bottom-total">Total = $ {cartTotal}</div>
+        <div className="proceed-check-btn-div">
+          <button onClick={() => modalHandler()}className="proceed-check-btn">Proceed to checkout</button>
+        </div>
       </div>
     </>
   );

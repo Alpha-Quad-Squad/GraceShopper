@@ -2,14 +2,16 @@
 .screen{
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.516);
-    position: absolute;
+    background-color: #000000ad;
+    position: fixed;
     left: 0;
     top: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 3;
+    /* bottom: 0;
+    right: 0; */
   }
 
   .child {

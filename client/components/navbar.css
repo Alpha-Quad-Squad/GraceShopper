@@ -21,6 +21,17 @@ nav {
     background-color: #111;
   }
 
+  .admin-User-Portal-Link {
+    color: #eef2f5;
+    font-size: 22px;
+    padding: 25px;
+    text-decoration: none;
+  }
+
+  .admin-User-Portal-Link:hover {
+    background-color: #111;
+  }
+
   .home {
     font-weight: bold;
     color: #eef2f5;
