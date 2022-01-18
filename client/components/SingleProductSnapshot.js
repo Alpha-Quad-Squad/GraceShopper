@@ -1,9 +1,5 @@
 import React from "react";
-<<<<<<< HEAD
-import './singleProductSnapshot.css';
-=======
 import './singleProductSnapshot.css'
->>>>>>> main
 
 const SingleProductSnapshot = (props) => {
 
