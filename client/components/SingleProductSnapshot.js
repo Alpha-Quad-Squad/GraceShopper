@@ -1,5 +1,9 @@
 import React from "react";
+<<<<<<< HEAD
 import './singleProductSnapshot.css';
+=======
+import './singleProductSnapshot.css'
+>>>>>>> main
 
 const SingleProductSnapshot = (props) => {
 
@@ -12,8 +16,8 @@ const SingleProductSnapshot = (props) => {
         src={props.itemData.itemImageUrl}
       />
       <div className="itemDescription">
-        <h4>{props.itemData.itemName}</h4>
-        <p>${props.itemData.itemPrice}</p>
+        <p>{props.itemData.itemName}</p>
+        <p>$ {props.itemData.itemPrice}</p>
       </div>
     </div>
   );
