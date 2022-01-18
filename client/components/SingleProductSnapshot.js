@@ -1,4 +1,5 @@
 import React from "react";
+import './singleProductSnapshot.css';
 
 const SingleProductSnapshot = (props) => {
 

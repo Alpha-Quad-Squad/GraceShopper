@@ -2,6 +2,7 @@ import React, {useEffect, useCallback} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getUsers } from '../store/AllUsersReducer';
+import './allUsers.css';
 
 const AllUsers = () => {
   const users = useSelector((state) => state.users);
