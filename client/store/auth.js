@@ -3,6 +3,7 @@ import history from "../history";
 import { fetchCart, goAddShoppingItem } from "./cart";
 const TOKEN = "token";
 const CART = "cart";
+import { emptyCart } from "./cart"
 
 /**
  * ACTION TYPES
@@ -29,7 +30,7 @@ export const me = () => async (dispatch) => {
     const { id } = auth;
     //check if there are items in a guest cart that need to be added to the backend cart for this user
     const frontEndCart = JSON.parse(window.localStorage.getItem(CART));
-    if (frontEndCart.length) {
+    if (frontEndCart) {
       //go add the frontend cart to backEnd
       frontEndCart.forEach((product) => {
         dispatch(goAddShoppingItem(product, id, product.qty));
@@ -55,11 +56,11 @@ export const authenticate =
 
 export const logout = () => {
   window.localStorage.removeItem(TOKEN);
-
+  window.localStorage.removeItem(CART);
   history.push("/login");
-  return {
-    type: SET_AUTH,
-    auth: {},
+  return (dispatch) => {
+    dispatch(emptyCart());
+    dispatch(setAuth({}))
   };
 };
 
