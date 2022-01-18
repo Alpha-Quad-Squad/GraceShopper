@@ -1,0 +1,38 @@
+
+
+/* The following is for Item Snapshot Component - Ace */
+  
+  .snapshot {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 20px; */
+    /* box-shadow: 5px 5px 20px black; */
+  }
+
+  #snapshotImage {
+    flex: 1.5;
+    margin: 20px;
+    border-radius: 10px;
+  }
+  
+  .itemDescription {
+    flex: 2;
+    padding: 10px;
+  }
+
+  .itemDescription > p {
+      color: black;
+      font-size: 20px;
+      font-weight: bold;
+      font-style: italic;
+      font-family: 'Times New Roman', Times, serif;
+  }
+  
+  /* .snapshot:active {
+    box-shadow: 2px 2px 8px black;
+    transform: translate(1%, 2%)
+  } */
+  /* ____________________________________________________________ */
