@@ -19,11 +19,7 @@ const Navbar = () => {
   };
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
-<<<<<<< HEAD
-  const adminUserPortalLink = isAdmin && <Link to='/users' className='navbar-link'>Admin Portal</Link>
-=======
   const adminUserPortalLink = isAdmin && <Link to='/users' className="admin-User-Portal-Link">Admin Portal</Link>
->>>>>>> main
 
   return (
     <div>
