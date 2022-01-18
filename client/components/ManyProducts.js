@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { getInventoryItems } from "../store/ManyProdReducer";
 import SingleProductSnapshot from "./SingleProductSnapshot";
+import './manyProducts.css';
 
 const ManyProducts = () => {
   const [loading, setLoading] = useState(false);

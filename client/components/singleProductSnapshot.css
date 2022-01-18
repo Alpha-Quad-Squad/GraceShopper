@@ -1,7 +1,7 @@
 
 
 /* The following is for Item Snapshot Component - Ace */
-  
+
   .snapshot {
     display: flex;
     flex-direction: row;
@@ -17,7 +17,7 @@
     margin: 20px;
     border-radius: 10px;
   }
-  
+
   .itemDescription {
     flex: 2;
     padding: 10px;
@@ -30,7 +30,7 @@
       font-style: italic;
       font-family: 'Times New Roman', Times, serif;
   }
-  
+
   /* .snapshot:active {
     box-shadow: 2px 2px 8px black;
     transform: translate(1%, 2%)
