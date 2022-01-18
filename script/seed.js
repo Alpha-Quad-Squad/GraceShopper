@@ -189,6 +189,166 @@ async function seed() {
       itemImageUrl:
         "https://images-na.ssl-images-amazon.com/images/I/91iIlD9xegL.jpg",
     }),
+    InventoryItem.create({
+      itemName: "The Outsider by Stephen King",
+      itemDescription:
+        "The Outsider is a horror novel by the American author Stephen King. The novel was published by Scribner.",
+      itemPrice: 7.53,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91YVPs88hjL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Devil in the White City",
+      itemDescription:
+        "The Devil in the White City: Murder, Magic, and Madness at the Fair That Changed America is a 2003 historical non-fiction book by Erik Larson presented in a novelistic style.",
+      itemPrice: 10.58,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91oNGDxyR0L.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "IT by Stephen King",
+      itemDescription:
+        "It is a 1986 horror novel by American author Stephen King. It was his 22nd book and his 17th novel written under his own name. The story follows the experiences of seven children as they are terrorized by an evil entity that exploits the fears of its victims to disguise itself while hunting its prey.",
+      itemPrice: 15.98,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71tFhdcC0XL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "NOS4A2 by Joe King",
+      itemDescription:
+        "NOS4A2 is the third novel by American author Joe Hill, son of authors Stephen and Tabitha King. The book was published on April 30, 2013 through William Morrow and Company, and has since been adapted to a television series.",
+      itemPrice: 10.56,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/714rjAuY8DL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Wise Man's Fear by Patrick Rothfus",
+      itemDescription:
+        "The Wise Man's Fear is a fantasy novel written by American author Patrick Rothfuss and the second volume in The Kingkiller Chronicle. It was published on March 1, 2011, by DAW Books. It is the sequel to 2007's The Name of the Wind.",
+      itemPrice: 25.95,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/81NX-69L22L.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Subtle Art of Not Giving a F*ck by Mark Manson",
+      itemDescription:
+        "The Subtle Art of Not Giving a Fuck: A Counterintuitive Approach to Living a Good Life is the second book by blogger and author Mark Manson. In it, Manson argues that life's struggles give it meaning, and that the mindless positivity of typical self-help books is neither practical nor helpful.",
+      itemPrice: 15.76,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Siddhartha by Herman Hesse",
+      itemDescription:
+        "Siddhartha: An Indian Poem is a 1922 novel by Hermann Hesse that deals with the spiritual journey of self-discovery of a man named Siddhartha during the time of the Gautama Buddha. The book, Hesse's 9th novel, was written in German, in a simple, lyrical style.",
+      itemPrice: 6.24,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71o4Wi1CRsL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Lies of Locke Lamora bu Scott Lynch",
+      itemDescription:
+        "The Lies of Locke Lamora is a 2006 fantasy novel by American writer Scott Lynch, the first book of the Gentleman Bastard series. Elite con artists calling themselves the \"Gentleman Bastards\" rob the rich of the city of Camorr, based on late medieval Venice but on an unnamed world.",
+      itemPrice: 14.62,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91pbvnDj5FL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Dune by Frank Herbert",
+      itemDescription:
+        "Dune is a 1965 science fiction novel by American author Frank Herbert, originally published as two separate serials in Analog magazine. It tied with Roger Zelazny's This Immortal for the Hugo Award in 1966 and it won the inaugural Nebula Award for Best Novel. It is the first installment of the Dune saga.",
+      itemPrice: 22.80,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/41+L9Q+rCLL._SX277_BO1,204,203,200_.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Picture of Dorian Gray by Oscar Wilde",
+      itemDescription:
+        "The Picture of Dorian Gray is a philosophical novel by Oscar Wilde. A shorter novella-length version was published in the July 1890 issue of the American periodical Lippincott's Monthly Magazine. Wilde then expanded that text into a novel published as a book in April 1891.",
+      itemPrice: 8.69,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71Yl9WYd4+S.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Ready Player One by Ernest Cline",
+      itemDescription:
+        "Ready Player One is a 2011 science fiction novel, and the debut novel of American author Ernest Cline. The story, set in a dystopia in 2045, follows protagonist Wade Watts on his search for an Easter egg in a worldwide virtual reality game, the discovery of which would lead him to inherit the game creator's fortune.",
+      itemPrice: 11.00,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/9193hRad9yL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Little Prince by Antoine de Saint-Exupéry",
+      itemDescription:
+        "The Little Prince is a novella by French aristocrat, writer, and military aviator Antoine de Saint-Exupéry.",
+      itemPrice: 6.81,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71OZY035QKL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Jonathan Livingston Seagull by Richard Bach",
+      itemDescription:
+        "Jonathan Livingston Seagull, written by American author Richard Bach and illustrated by Russell Munson, is a fable in novella form about a seagull who is trying to learn about life and flight, and a homily about self-perfection.",
+      itemPrice: 13.50,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71Nomlj8kCL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Devil Wears Prada by Lauren Weisberger",
+      itemDescription:
+        "The Devil Wears Prada is a 2003 novel by Lauren Weisberger about a young woman who is hired as a personal assistant to a powerful fashion magazine editor, a job that becomes nightmarish as she struggles to keep up with her boss's grueling schedule and demeaning demands.",
+      itemPrice: 12.95,
+      itemImageUrl:
+        "https://m.media-amazon.com/images/I/51zn-7EUruS.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "A Game of Thrones by George R. R. Martin",
+      itemDescription:
+        "A Game of Thrones is the first novel in A Song of Ice and Fire, a series of fantasy novels by the American author George R. R. Martin. It was first published on August 1, 1996. The novel won the 1997 Locus Award and was nominated for both the 1997 Nebula Award and the 1997 World Fantasy Award.",
+      itemPrice: 26.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91dSMhdIzTL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "A Monster Calls by Patrick Ness",
+      itemDescription:
+        "A Monster Calls is a low fantasy novel written for young adults by Patrick Ness illustrated by Jim Kay and published by Walker in 2011. Set in present-day England, it features a boy who struggles to cope with the consequences of his mother's illness.",
+      itemPrice: 8.49,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/A1Oo8yFPILL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Way of Kings by Brandon Sanderson",
+      itemDescription:
+        "The Way of Kings is an epic fantasy novel written by American author Brandon Sanderson and the first book in The Stormlight Archive series. The novel was published on August 31, 2010, by Tor Books. The Way of Kings consists of one prelude, one prologue, 75 chapters, an epilogue and 9 interludes.",
+      itemPrice: 8.19,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91KzZWpgmyL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Shōgun by James Clavell",
+      itemDescription:
+        "Shōgun is a 1975 novel by James Clavell. It is the first novel of the author's Asian Saga. A major best-seller, by 1990 the book had sold 15 million copies worldwide.",
+      itemPrice: 15.82,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/81qN5Nmu6uL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Pride and Prejudice by Jane Austen",
+      itemDescription:
+        "Pride and Prejudice is an 1813 novel of manners written by Jane Austen. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness.",
+      itemPrice: 5.95,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71Q1tPupKjL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Iron King by Julie Kagawa",
+      itemDescription:
+        "Meghan Chase has a secret destiny – one she could never have imaginedMy name is Meghan Chase. In less than twenty–four hours I'll be sixteen.",
+      itemPrice: 10.69,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/81AA35r7YLL.jpg",
+    }),
   ]);
 
   console.log(`seeded ${users.length} users`.brightGreen);
