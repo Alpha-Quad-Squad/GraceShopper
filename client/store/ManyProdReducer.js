@@ -56,7 +56,7 @@ export const createInventoryItem = (item) => {
           headers: {
             authorization: token
           },
-          body: item
+          item,
         });
         dispatch(createdInventoryItem(data));
       } else {
@@ -77,7 +77,7 @@ export const updateInventoryItem = (item) => {
           headers: {
             authorization: token
           },
-          body: item
+          item,
         });
         dispatch(updatedInventoryItem(data));
       } else {

@@ -156,6 +156,36 @@ export const goEmptyCart = (userId) => {
   };
 };
 
+//api/cart/makePurchase/2
+
+export const goCreateUserOrder = (userId) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem(TOKEN);
+      const data = await axios.put(`/api/cart/makePurchase/${userId}`, {
+        headers: {
+          authorization: token,
+        }
+      });
+      dispatch(emptyCart())
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const goCreateGuestOrder = () => {
+  return async (dispatch) => {
+    try {
+      const frontEndCart = JSON.parse(window.localStorage.getItem(CART));
+      const data = await axios.post(`/api/cart/makeGuestPurchase/`, frontEndCart);
+      dispatch(emptyCart())
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 const initialState = JSON.parse(window.localStorage.getItem(CART)) || [];
 /*
 here is an example of what a cart array will look like when it isn't empty.

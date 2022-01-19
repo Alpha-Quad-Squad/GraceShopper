@@ -2,6 +2,7 @@ const router = require("express").Router();
 const {
   models: { InventoryItem, ShoppingItem, Purchase, User },
 } = require("../db");
+const { requireToken, isAdmin } = require("../api/gatekeeping");
 module.exports = router;
 
 //this function takes a backend userPurchase that contains inventoryItems, and returns  a front end cart, i.e. an array of items where the qty is a property directly on the item object rather than nested in the shopping item product in the cart.
@@ -63,7 +64,7 @@ router.get("/:userId", async (req, res, next) => {
 });
 
 //add an item to the shopping cart (or if it's already in the cart update its qty)
-router.put("/:userId/add-item", async (req, res, next) => {
+router.put("/:userId/add-item", requireToken, async (req, res, next) => {
   try {
     //req.body will include the item id and the qty
     let { itemId, quantity } = req.body;
@@ -118,7 +119,7 @@ router.put("/:userId/add-item", async (req, res, next) => {
 });
 
 //update the quantity of a particular item in a user's cart
-router.put("/:userId/quantity-update", async (req, res, next) => {
+router.put("/:userId/quantity-update", requireToken, async (req, res, next) => {
   try {
     let { itemId, quantity } = req.body;
     const userId = req.params.userId;
@@ -161,7 +162,7 @@ router.put("/:userId/quantity-update", async (req, res, next) => {
 });
 
 //update the cart by removing an item.
-router.put("/:userId/remove-item", async (req, res, next) => {
+router.put("/:userId/remove-item", requireToken, async (req, res, next) => {
   try {
     let { itemId } = req.body;
     const userId = req.params.userId;
@@ -203,7 +204,7 @@ router.put("/:userId/remove-item", async (req, res, next) => {
 });
 
 //empties an entire cart for a user
-router.delete("/:userId", async (req, res, next) => {
+router.delete("/:userId", requireToken, async (req, res, next) => {
   try {
     const userId = req.params.userId;
     //obtain the purchase.
@@ -216,6 +217,44 @@ router.delete("/:userId", async (req, res, next) => {
     });
     await userPurchase.destroy();
     res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//converts a user's order from cart to purchased.
+router.put("/makePurchase/:userId/", async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    //grab the purchase
+    [userPurchase] = await Purchase.findAll({
+      where: {
+        userId: userId,
+        status: "cart",
+      }
+    });
+    await userPurchase.update({status: "purchased"});
+    res.status(200).send(userPurchase)
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/makeGuestPurchase/", async (req, res, next) => {
+  try {
+
+    const frontEndCart = req.body;
+    const guestPurchase = await Purchase.create({status: "purchased"})
+
+    frontEndCart.forEach(cartItem => {
+      ShoppingItem.create({
+        quantity: cartItem.qty,
+        inventoryItemId: cartItem.id,
+        purchaseId: guestPurchase.id
+      })
+    })
+
+    res.status(200).send(guestPurchase)
   } catch (error) {
     next(error);
   }

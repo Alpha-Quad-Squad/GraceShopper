@@ -904,6 +904,10 @@ async function seed() {
       cody: users[0],
       murphy: users[1],
     },
+    inventoryItems: {
+      Sapkowski: inventoryItems[0],
+      Murakami: inventoryItems[1],
+    },
   };
 }
 
