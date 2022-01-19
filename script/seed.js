@@ -248,7 +248,7 @@ async function seed() {
     InventoryItem.create({
       itemName: "The Lies of Locke Lamora bu Scott Lynch",
       itemDescription:
-        "The Lies of Locke Lamora is a 2006 fantasy novel by American writer Scott Lynch, the first book of the Gentleman Bastard series. Elite con artists calling themselves the \"Gentleman Bastards\" rob the rich of the city of Camorr, based on late medieval Venice but on an unnamed world.",
+        'The Lies of Locke Lamora is a 2006 fantasy novel by American writer Scott Lynch, the first book of the Gentleman Bastard series. Elite con artists calling themselves the "Gentleman Bastards" rob the rich of the city of Camorr, based on late medieval Venice but on an unnamed world.',
       itemPrice: 14.62,
       itemImageUrl:
         "https://images-na.ssl-images-amazon.com/images/I/91pbvnDj5FL.jpg",
@@ -257,7 +257,7 @@ async function seed() {
       itemName: "Dune by Frank Herbert",
       itemDescription:
         "Dune is a 1965 science fiction novel by American author Frank Herbert, originally published as two separate serials in Analog magazine. It tied with Roger Zelazny's This Immortal for the Hugo Award in 1966 and it won the inaugural Nebula Award for Best Novel. It is the first installment of the Dune saga.",
-      itemPrice: 22.80,
+      itemPrice: 22.8,
       itemImageUrl:
         "https://images-na.ssl-images-amazon.com/images/I/41+L9Q+rCLL._SX277_BO1,204,203,200_.jpg",
     }),
@@ -273,7 +273,7 @@ async function seed() {
       itemName: "Ready Player One by Ernest Cline",
       itemDescription:
         "Ready Player One is a 2011 science fiction novel, and the debut novel of American author Ernest Cline. The story, set in a dystopia in 2045, follows protagonist Wade Watts on his search for an Easter egg in a worldwide virtual reality game, the discovery of which would lead him to inherit the game creator's fortune.",
-      itemPrice: 11.00,
+      itemPrice: 11.0,
       itemImageUrl:
         "https://images-na.ssl-images-amazon.com/images/I/9193hRad9yL.jpg",
     }),
@@ -289,7 +289,7 @@ async function seed() {
       itemName: "Jonathan Livingston Seagull by Richard Bach",
       itemDescription:
         "Jonathan Livingston Seagull, written by American author Richard Bach and illustrated by Russell Munson, is a fable in novella form about a seagull who is trying to learn about life and flight, and a homily about self-perfection.",
-      itemPrice: 13.50,
+      itemPrice: 13.5,
       itemImageUrl:
         "https://images-na.ssl-images-amazon.com/images/I/71Nomlj8kCL.jpg",
     }),
@@ -298,8 +298,7 @@ async function seed() {
       itemDescription:
         "The Devil Wears Prada is a 2003 novel by Lauren Weisberger about a young woman who is hired as a personal assistant to a powerful fashion magazine editor, a job that becomes nightmarish as she struggles to keep up with her boss's grueling schedule and demeaning demands.",
       itemPrice: 12.95,
-      itemImageUrl:
-        "https://m.media-amazon.com/images/I/51zn-7EUruS.jpg",
+      itemImageUrl: "https://m.media-amazon.com/images/I/51zn-7EUruS.jpg",
     }),
     InventoryItem.create({
       itemName: "A Game of Thrones by George R. R. Martin",
@@ -424,6 +423,10 @@ async function seed() {
     users: {
       cody: users[0],
       murphy: users[1],
+    },
+    inventoryItems: {
+      Sapkowski: inventoryItems[0],
+      Murakami: inventoryItems[1],
     },
   };
 }
