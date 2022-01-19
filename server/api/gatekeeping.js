@@ -13,17 +13,10 @@ const requireToken = async (req, res, next) => {
         token = req.body.headers.authorization;
       }
     }
-    // const token = req.headers.authorization
-    //   ? req.headers.authorization
-    //   : req.body.headers
-    // if (!token && !req.headers.authorization) {
-    //   throw new Error("bad token");
-    // }else {
 
-    // }
     const user = await User.findByToken(token);
     req.user = user;
-    console.log("requireToken running", user);
+
     next();
   } catch (error) {
     next(error);
