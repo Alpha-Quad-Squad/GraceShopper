@@ -121,9 +121,6 @@ router.put("/:userId/add-item", requireToken, async (req, res, next) => {
 //update the quantity of a particular item in a user's cart
 router.put("/:userId/quantity-update", requireToken, async (req, res, next) => {
   try {
-    console.log("req.body.headers", req.body.headers);
-    console.log("req.body", req.body);
-    console.log("req.headers", req.headers);
     let { itemId, quantity } = req.body;
     const userId = req.params.userId;
     //obtain the purchase.
