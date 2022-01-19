@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
 import {
@@ -30,10 +30,10 @@ const SingleProduct = (props) => {
 
   //establish whether this item is in the cart and if it is, how many
   let quantity = 0;
-  //if there is something in the cart, check if it is the item that is currently displayed
+  //if there is something in the cart, check if the cart includes this item.
   if (cart.length) {
     const [cartProduct] = cart.filter((item) => product.id === item.id);
-    //if the item currently displayed it in the cart, check how many
+    //if this item is in the cart, note its quantity
     if (cartProduct) {
       quantity = cartProduct.qty;
     }
@@ -55,7 +55,7 @@ const SingleProduct = (props) => {
         dispatch(goUpdateShoppingItemQty(product, userId, quantity + 1));
       } else {
         //if not loggedIn dispatch action to update the qty in store only.
-        dispatch(updateItemQty(product));
+        dispatch(updateItemQty(product, quantity + 1));
       }
     } else {
       //if item is not in the cart, add it to the cart in the store / db (with qty 1)
