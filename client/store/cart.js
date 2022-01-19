@@ -156,6 +156,45 @@ export const goEmptyCart = (userId) => {
   };
 };
 
+export const mergeGuestCartwDBCart = (userId) => {
+  return async (dispatch) => {
+    try {
+      //check if there are items in a guest cart that need to be added to the backend cart for this user
+      const frontEndCart = JSON.parse(window.localStorage.getItem(CART));
+
+      //check if there are items in the backend cart that need to be merged with front end cart.
+      const token = window.localStorage.getItem(TOKEN);
+      const { data: backEndCart } = await axios.get(`/api/cart/${userId}`, {
+        headers: {
+          authorization: token,
+        },
+      });
+
+      if (frontEndCart) {
+        //go add the frontend cart to backEnd, then update the cart in redux store with the new information from the backend.
+        await frontEndCart.forEach(async (frontEndProduct) => {
+          //get qty of the item that is already in this user's back end cart
+          let [productInBackEndCart] = backEndCart.filter(
+            (backEndProduct) => backEndProduct.id === frontEndProduct.id
+          );
+          let backEndQty = 0;
+          if (productInBackEndCart) {
+            backEndQty = productInBackEndCart.qty;
+          }
+          let newQuantity = backEndQty + frontEndProduct.qty;
+          await dispatch(
+            goAddShoppingItem(frontEndProduct, userId, newQuantity)
+          );
+        });
+      }
+    } catch (error) {
+      console.log(
+        "there was an error merging this user's guest cart with their database cart: ",
+        error
+      );
+    }
+  };
+};
 //api/cart/makePurchase/2
 
 export const goCreateUserOrder = (userId) => {
@@ -165,14 +204,14 @@ export const goCreateUserOrder = (userId) => {
       const data = await axios.put(`/api/cart/makePurchase/${userId}`, {
         headers: {
           authorization: token,
-        }
+        },
       });
-      dispatch(emptyCart())
+      dispatch(emptyCart());
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-}
+  };
+};
 
 const initialState = JSON.parse(window.localStorage.getItem(CART)) || [];
 /*
