@@ -3,7 +3,7 @@ import history from "../history";
 import { fetchCart, goAddShoppingItem } from "./cart";
 const TOKEN = "token";
 const CART = "cart";
-import { emptyCart } from "./cart"
+import { emptyCart } from "./cart";
 
 /**
  * ACTION TYPES
@@ -31,19 +31,15 @@ export const me = () => async (dispatch) => {
     //check if there are items in a guest cart that need to be added to the backend cart for this user
     const frontEndCart = JSON.parse(window.localStorage.getItem(CART));
     if (frontEndCart) {
-      //go add the frontend cart to backEnd
-      frontEndCart.forEach(async (product) => {
-        console.log('product', product)
+      //go add the frontend cart to backEnd, and update the cart in redux store with the new information from the backend.
+      await frontEndCart.forEach(async (product) => {
         dispatch(goAddShoppingItem(product, id, product.qty));
       });
     }
 
-    // //get backend cart for this user.
-    // return (dispatch) => {
-      dispatch(fetchCart(id));
-      dispatch(setAuth(auth));
-    // }
-    // return
+    //get backend cart for this user.
+    //await dispatch(fetchCart(id));
+    dispatch(setAuth(auth));
   }
 };
 
@@ -64,7 +60,7 @@ export const logout = () => {
   history.push("/login");
   return (dispatch) => {
     dispatch(emptyCart());
-    dispatch(setAuth({}))
+    dispatch(setAuth({}));
   };
 };
 

@@ -4,14 +4,14 @@ const {
 } = require("../db");
 module.exports = router;
 
-//this function takes a backend inventoryItem (with an associated shopping item), and turns it into a front end cart item (where the qty value is a property directly on the item object rather than nested in the shopping item product in the cart)
-/*  backend cart:
+//this function takes a backend userPurchase that contains inventoryItems, and returns  a front end cart, i.e. an array of items where the qty is a property directly on the item object rather than nested in the shopping item product in the cart.
+/*  backend userPurchase:
 [
-    {   id:
+    inventoryItems: [{   id:
         name:
         shoppingItem:{
             qty:
-    }}
+    }}]
 
 ]
 frontend cart:
@@ -24,40 +24,38 @@ frontend cart:
     },
 */
 
-const makeFrontEndCartItem = (inventoryItem) => {
-  return {
-    id: inventoryItem.id,
-    itemName: inventoryItem.itemName,
-    itemDescription: inventoryItem.itemDescription,
-    itemPrice: inventoryItem.itemPrice,
-    itemImageUrl: inventoryItem.itemImageUrl,
-    qty: inventoryItem.shoppingItem.quantity,
-  };
-};
-
-const makeFrontEndCart = (backEndCart) => {
-  return backEndCart.map((cartItem) => {
-    return makeFrontEndCartItem(cartItem);
-  });
+const makeFrontEndCart = (userPurchase) => {
+  if (userPurchase.inventoryItems) {
+    return userPurchase.inventoryItems.map((inventoryItem) => {
+      return {
+        id: inventoryItem.id,
+        itemName: inventoryItem.itemName,
+        itemDescription: inventoryItem.itemDescription,
+        itemPrice: inventoryItem.itemPrice,
+        itemImageUrl: inventoryItem.itemImageUrl,
+        qty: inventoryItem.shoppingItem.quantity,
+      };
+    });
+  } else {
+    return [];
+  }
 };
 
 //get all the inventoryItems and their quantities that are shopping items in a purchase with cart status for a given user.
 router.get("/:userId", async (req, res, next) => {
   try {
     const id = req.params.userId;
-    const [userPurchases] = await Purchase.findAll({
+    const [userPurchase] = await Purchase.findOrCreate({
       where: {
         userId: id,
         status: "cart",
       },
       include: InventoryItem,
     });
-    const userCart = userPurchases.inventoryItems;
-    //the userCart is an array of inventoryItems which are in the cart.
 
-    //use this information to reformat the cart to be like the cart on the front end.
-    let frontEndCart = makeFrontEndCart(userCart);
-
+    // reformat the purchase to be like a frontend cart.
+    let frontEndCart = makeFrontEndCart(userPurchase);
+    //then send it to the front end.
     res.json(frontEndCart);
   } catch (err) {
     next(err);
@@ -65,14 +63,15 @@ router.get("/:userId", async (req, res, next) => {
 });
 
 //add an item to the shopping cart (or if it's already in the cart update its qty)
-router.post("/:userId", async (req, res, next) => {
+router.put("/:userId/add-item", async (req, res, next) => {
   try {
     //req.body will include the item id and the qty
     let { itemId, quantity } = req.body;
     const userId = req.params.userId;
+
     let inventoryItem = await InventoryItem.findByPk(itemId);
 
-    //does this user already have a cart?
+    //obtain the user's cart purchase (It is assumed that userPurchase is defined because this route should not be called if the user doesn't already have a cart)
     let [userPurchase] = await Purchase.findAll({
       where: {
         userId: userId,
@@ -81,39 +80,25 @@ router.post("/:userId", async (req, res, next) => {
       include: InventoryItem,
     });
 
-    if (userPurchase) {
-      //if the user has a cart check if it already has this inventoryItem in it.
-      let existingCart = userPurchase.inventoryItems;
-      let [itemInCart] = existingCart.filter((item) => item.id === itemId);
+    //determine whether the item to be added is already in the cart
+    let [itemInCart] = userPurchase.inventoryItems.filter(
+      (item) => item.id === itemId
+    );
 
-      if (itemInCart) {
-        //if the item is already in the cart, override the quantity of the associated shoppingItem with the new qty.
-        let existingShoppingItem = itemInCart.shoppingItem;
-        await existingShoppingItem.update({
-          quantity: quantity,
-        });
-      } else {
-        //if the item is not in the cart add it.
-        await userPurchase.addInventoryItem(inventoryItem, {
-          through: { quantity: quantity },
-        });
-      }
-    } else {
-      //if the user doesn't have a cart(i.e. a purchase with cart status), create one.
-      userPurchase = await Purchase.create({
-        userId: userId,
-        status: "cart",
+    //if the item is already in the cart override the quantity of the associated shoppingItem with the new qty.
+    if (itemInCart) {
+      let existingShoppingItem = itemInCart.shoppingItem;
+      await existingShoppingItem.update({
+        quantity: quantity,
       });
-
-      //add the inventory item to the new cart purchase in the database
+    } else {
+      //if the item is not in the cart add it.
       await userPurchase.addInventoryItem(inventoryItem, {
         through: { quantity: quantity },
       });
     }
 
-    //update our variables so that
-    //the cart now has the updated shoppingItem attached to it.
-    // the inventory item has the updated qty from the database.
+    //update the user purchase variable so that it has the updated shoppingItem attached to it.
     [userPurchase] = await Purchase.findAll({
       where: {
         userId: userId,
@@ -121,15 +106,12 @@ router.post("/:userId", async (req, res, next) => {
       },
       include: InventoryItem,
     });
-    [inventoryItem] = userPurchase.inventoryItems.filter(
-      (item) => item.id === itemId
-    );
 
-    //reformat the inventoryItem to match a frontend cartItem
-    let updatedCartItem = makeFrontEndCartItem(inventoryItem);
+    //reformat the purchase to be a frontend Cart.
+    const updatedFrontEndCart = makeFrontEndCart(userPurchase);
 
-    //send back the updated cart item
-    res.json(updatedCartItem);
+    //send the updated cart to the front end
+    res.json(updatedFrontEndCart);
   } catch (error) {
     next(error);
   }
@@ -159,9 +141,7 @@ router.put("/:userId/quantity-update", async (req, res, next) => {
       quantity: quantity,
     });
 
-    //update our variables so that
-    //the cart now has the updated shoppingItem attached to it.
-    // the inventory item has the updated qty from the database.
+    //update variable so that the userPurchase now has the updated shoppingItem attached to it.
     [userPurchase] = await Purchase.findAll({
       where: {
         userId: userId,
@@ -170,21 +150,15 @@ router.put("/:userId/quantity-update", async (req, res, next) => {
       include: InventoryItem,
     });
 
-    [inventoryItem] = userPurchase.inventoryItems.filter(
-      (item) => item.id === itemId
-    );
+    //reformat the purchase to be a frontend Cart.
+    const updatedFrontEndCart = makeFrontEndCart(userPurchase);
 
-    //reformat the inventoryItem to match a frontend cartItem
-    let updatedCartItem = makeFrontEndCartItem(inventoryItem);
-
-    //send back the updated cart item
-    res.json(updatedCartItem);
+    //send back the updated cart
+    res.json(updatedFrontEndCart);
   } catch (err) {
     next(err);
   }
 });
-
-//update a cart at the time of user log in to add everything that had been added to the cart on the frontend prior to log in to the databse cart
 
 //update the cart by removing an item.
 router.put("/:userId/remove-item", async (req, res, next) => {
@@ -205,7 +179,7 @@ router.put("/:userId/remove-item", async (req, res, next) => {
     let cart = userPurchase.inventoryItems;
 
     let [inventoryItem] = cart.filter((item) => item.id === itemId);
-    //console.log("inventoryItem to be deleted", inventoryItem);
+
     //remove the associate shopping item
     let shoppingItem = inventoryItem.shoppingItem;
     await shoppingItem.destroy();
@@ -220,7 +194,7 @@ router.put("/:userId/remove-item", async (req, res, next) => {
     });
 
     //send back the updated cart once it has been reformatted to match the front end.
-    let updatedCart = makeFrontEndCart(userPurchase.inventoryItems);
+    let updatedCart = makeFrontEndCart(userPurchase);
 
     res.json(updatedCart);
   } catch (error) {
