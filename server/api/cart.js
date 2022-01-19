@@ -220,3 +220,21 @@ router.delete("/:userId", async (req, res, next) => {
     next(error);
   }
 });
+
+//converts a user's order from cart to purchased.
+router.put("/makePurchase/:userId/", async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    //grab the purchase
+    [userPurchase] = await Purchase.findAll({
+      where: {
+        userId: userId,
+        status: "cart",
+      }
+    });
+    await userPurchase.update({status: "purchased"});
+    res.status(200).send(userPurchase)
+  } catch (error) {
+    next(error);
+  }
+});
