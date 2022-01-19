@@ -64,7 +64,25 @@ export const fetchCart = (userId) => {
           authorization: token,
         },
       });
+      let cartMap = cart.map(item=> {
+        return item.itemName
+      })
+      let guestCart = (JSON.parse(window.localStorage.getItem(CART)));
+      guestCart.forEach(item => {
+        if ( cartMap.includes(item.itemName)) {
+          for ( let i = 0 ; i < cart.length; i ++ ) {
+            if ( cart[i].itemName === item.itemName ) {
+              cart[i].qty+=1
+            }
+          }
+        } else {
+          cart.push(item)
+        }
+      })
       dispatch(setCart(cart));
+      
+
+      
     } catch (error) {
       console.log("there was a problem fetching this user's cart", error);
     }

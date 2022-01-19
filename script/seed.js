@@ -15,17 +15,17 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: "cody", password: "123", isAdmin: false }),
-    User.create({ username: "murphy", password: "123", isAdmin: true }),
-    User.create({ username: "lucy", password: "123", isAdmin: false }),
-    User.create({ username: "john", password: "123", isAdmin: false }),
-    User.create({ username: "stacie", password: "123", isAdmin: false }),
-    User.create({ username: "kim", password: "123", isAdmin: true }),
-    User.create({ username: "eric", password: "123", isAdmin: false }),
-    User.create({ username: "mike", password: "123", isAdmin: true }),
-    User.create({ username: "jenn", password: "123", isAdmin: false }),
-    User.create({ username: "tom", password: "123", isAdmin: false }),
-    User.create({ username: "lisa", password: "123", isAdmin: true }),
+    User.create({ username: "cody", password: "123", isAdmin: false, email: 'cody@gh.com' }),
+    User.create({ username: "murphy", password: "123", isAdmin: true, email: 'murphy@gh.com' }),
+    User.create({ username: "lucy", password: "123", isAdmin: false, email: 'lucy@gh.com' }),
+    User.create({ username: "john", password: "123", isAdmin: false, email: 'john@gh.com' }),
+    User.create({ username: "stacie", password: "123", isAdmin: false, email: 'stacie@gh.com' }),
+    User.create({ username: "kim", password: "123", isAdmin: true, email: 'kim@gh.com' }),
+    User.create({ username: "eric", password: "123", isAdmin: false, email: 'eric@gh.com' }),
+    User.create({ username: "mike", password: "123", isAdmin: true, email: 'mike@gh.com' }),
+    User.create({ username: "jenn", password: "123", isAdmin: false, email: 'jenn@gh.com' }),
+    User.create({ username: "tom", password: "123", isAdmin: false, email: 'tom@gh.com' }),
+    User.create({ username: "lisa", password: "123", isAdmin: true, email: 'lisa@gh.com' }),
   ]);
 
   // Creating Inventory Items
@@ -417,7 +417,7 @@ async function seed() {
   ]);
 
   console.log(`seeded ${users.length} users`);
-  console.log(`seeded ${InventoryItem.length} inventory items`);
+  console.log(`seeded ${inventoryItems.length} inventory items`);
   console.log(`seeded successfully`);
   return {
     users: {
