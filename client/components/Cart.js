@@ -109,7 +109,7 @@ const Cart = (props) => {
             <SingleProductSnapshot itemData={item} />
             <div className="cart-items-right">
               <div className="cart-items-right-qty-price">
-                <p>X {item.qty} = $ {item.qty * item.itemPrice}</p>
+                <p>X {item.qty} = $ {(item.qty * (item.itemPrice / 100)).toFixed(2)}</p>
               </div>
               <div className="increment-decrement-btns">
                 <button onClick={() => increment(item)}>+</button>
@@ -124,7 +124,7 @@ const Cart = (props) => {
         <div className="empty-cart-btn-div">
           <button onClick={() => empty()} className="empty-cart-btn">empty cart</button>
         </div>
-        <div className="cart-bottom-total">Total = $ {cartTotal}</div>
+        <div className="cart-bottom-total">Total = $ {(cartTotal / 100).toFixed(2)}</div>
         <div className="proceed-check-btn-div">
           <button onClick={() => modalHandler()}className="proceed-check-btn">Proceed to checkout</button>
         </div>
