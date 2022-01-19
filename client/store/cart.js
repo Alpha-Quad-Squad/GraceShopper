@@ -213,6 +213,18 @@ export const goCreateUserOrder = (userId) => {
   };
 };
 
+export const goCreateGuestOrder = () => {
+  return async (dispatch) => {
+    try {
+      const frontEndCart = JSON.parse(window.localStorage.getItem(CART));
+      const data = await axios.post(`/api/cart/makeGuestPurchase/`, frontEndCart);
+      dispatch(emptyCart())
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 const initialState = JSON.parse(window.localStorage.getItem(CART)) || [];
 /*
 here is an example of what a cart array will look like when it isn't empty.
