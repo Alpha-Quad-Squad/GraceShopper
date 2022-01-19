@@ -10,7 +10,7 @@ const InventoryItem = db.define('inventoryItem', {
     type: Sequelize.TEXT,
   },
   itemPrice: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   itemImageUrl: {
