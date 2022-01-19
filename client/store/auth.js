@@ -30,15 +30,27 @@ export const me = () => async (dispatch) => {
     const { id } = auth;
     //check if there are items in a guest cart that need to be added to the backend cart for this user
     const frontEndCart = JSON.parse(window.localStorage.getItem(CART));
+
+    const { data: backEndCart } = await axios.get(`/api/cart/${id}`, {
+      headers: {
+        authorization: token,
+      },
+    });
+
     if (frontEndCart) {
       //go add the frontend cart to backEnd, and update the cart in redux store with the new information from the backend.
-      await frontEndCart.forEach(async (product) => {
-        dispatch(goAddShoppingItem(product, id, product.qty));
+      await frontEndCart.forEach(async (frontEndProduct) => {
+        //get qty of the item that is already in this user's back end cart
+        let [productInBackEndCart] = backEndCart.filter(
+          (backEndProduct) => backEndProduct.id === frontEndProduct.id
+        );
+        let newQuantity = productInBackEndCart.qty + frontEndProduct.qty;
+        await dispatch(goAddShoppingItem(frontEndProduct, id, newQuantity));
       });
     }
 
     //get backend cart for this user.
-    //await dispatch(fetchCart(id));
+    dispatch(fetchCart(id));
     dispatch(setAuth(auth));
   }
 };
