@@ -85,6 +85,7 @@ const SingleProduct = (props) => {
               {product.itemDescription}
             </p>
             <p className="singleProductPrice">${product.itemPrice}</p>
+            {quantity ? <p>Quantity in Cart: {quantity}</p> : <p></p>}
             <button className="addButton" onClick={addToCart}>
               Add to Cart
             </button>
