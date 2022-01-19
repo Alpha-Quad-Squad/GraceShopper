@@ -22,6 +22,15 @@ const AuthForm = props => {
         </>)
     }
 
+  const emailSignupInput = displayName === 'Sign Up' && (
+    <div>
+      <label htmlFor="email">
+        <small>Email</small>
+      </label>
+      <input name="email" type="email" />
+    </div>
+  );
+
   return (
     <div>
       <form onSubmit={handleSubmit} name={name} className="login-Form">
@@ -37,6 +46,7 @@ const AuthForm = props => {
           </label>
           <input name="password" type="password" />
         </div>
+        {emailSignupInput}
         <div className='login-cancel-btn-div'>
           <button type="submit" className="submit-button">{displayName}</button>
           <Link to="/home" className="cancel-button" style={{ textDecoration: 'none' }}>Cancel</Link>
@@ -80,7 +90,8 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const username = evt.target.username.value
       const password = evt.target.password.value
-      dispatch(authenticate(username, password, formName))
+      const email = evt.target.email ? evt.target.email.value : '';
+      dispatch(authenticate(username, password, formName, email))
     }
   }
 }
