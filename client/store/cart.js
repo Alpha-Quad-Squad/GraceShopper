@@ -47,14 +47,7 @@ export const emptyCart = () => {
   };
 };
 
-//if the component is not able to pass the item object to the action creator then we could use a thunk to get the item object from the database, but I don't think that will be needed.
-
 //THUNK CREATORS
-//need to create thunks to create shopping items for all the action creators.
-//need a thunk for when someone logs in.  it iwll need to do the following
-//convert any contents of a cart the user had assembled before logging in into shopping items.
-//it will need to fetch any shoppingItems with cart status in the databse for that user.  They will need to be added to the cart array in the reducer.
-
 export const fetchCart = (userId) => {
   return async (dispatch) => {
     try {
@@ -75,7 +68,9 @@ export const goAddShoppingItem = (item, userId, quantity) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
-      const { data: product } = await axios.post(`/api/cart/${userId}`, {
+
+      //make sure the user has a cart already (this route will create an empty cart for the user if they don't already have one)
+      await axios.get(`/api/cart/${userId}`, {
         headers: {
           authorization: token,
         },
@@ -83,7 +78,19 @@ export const goAddShoppingItem = (item, userId, quantity) => {
         quantity: quantity,
       });
 
-      dispatch(addItem(product));
+      //add the item to the cart(or update its qty if its already in there)
+      const { data: updatedCart } = await axios.put(
+        `/api/cart/${userId}/add-item`,
+        {
+          headers: {
+            authorization: token,
+          },
+          itemId: item.id,
+          quantity: quantity,
+        }
+      );
+
+      dispatch(setCart(updatedCart));
     } catch (err) {
       console.log(err);
     }
@@ -94,7 +101,7 @@ export const goUpdateShoppingItemQty = (item, userId, quantity) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
-      const { data: product } = await axios.put(
+      const { data: updatedCart } = await axios.put(
         `/api/cart/${userId}/quantity-update`,
         {
           headers: {
@@ -104,7 +111,7 @@ export const goUpdateShoppingItemQty = (item, userId, quantity) => {
           quantity: quantity,
         }
       );
-      dispatch(updateItemQty(product, product.qty));
+      dispatch(setCart(updatedCart));
     } catch (err) {
       console.log(err);
     }
@@ -115,7 +122,7 @@ export const goRemoveShoppingItem = (item, userId) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
-      const { data: newCart } = await axios.put(
+      const { data: updatedCart } = await axios.put(
         `/api/cart/${userId}/remove-item`,
         {
           headers: {
@@ -125,7 +132,7 @@ export const goRemoveShoppingItem = (item, userId) => {
         }
       );
 
-      dispatch(setCart(newCart));
+      dispatch(setCart(updatedCart));
     } catch (err) {
       console.log(err);
     }
