@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { emptyCart, goCreateUserOrder } from "../store/cart"
+import { emptyCart, goCreateUserOrder, goCreateGuestOrder } from "../store/cart"
 // css style import.
 import './checkout.css'
 
@@ -23,11 +23,11 @@ const Checkout = () => {
     const resetCart = () => {
         if (userId) {
           //if user is logged in dispatch thunk to change status of purchase to be purchased db.
-          // ******** a method to be added here later **********.
           dispatch(goCreateUserOrder(userId))
         } else {
-          //if not loggedIn dispatch action to remove items in store only.
-          dispatch(emptyCart());
+          //if not loggedIn dispatch thunk to create a new purchase, convert all frontendcart items to
+          //backend, associate them with the new purchase. And thus, we have a guest purchase.
+          dispatch(goCreateGuestOrder())
         }
       };
 

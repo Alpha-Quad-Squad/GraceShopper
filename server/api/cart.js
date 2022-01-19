@@ -239,3 +239,23 @@ router.put("/makePurchase/:userId/", async (req, res, next) => {
     next(error);
   }
 });
+
+router.post("/makeGuestPurchase/", async (req, res, next) => {
+  try {
+
+    const frontEndCart = req.body;
+    const guestPurchase = await Purchase.create({status: "purchased"})
+
+    frontEndCart.forEach(cartItem => {
+      ShoppingItem.create({
+        quantity: cartItem.qty,
+        inventoryItemId: cartItem.id,
+        purchaseId: guestPurchase.id
+      })
+    })
+
+    res.status(200).send(guestPurchase)
+  } catch (error) {
+    next(error);
+  }
+});
