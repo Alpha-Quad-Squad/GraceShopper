@@ -2,6 +2,8 @@ import React from "react";
 import './singleProductSnapshot.css'
 
 const SingleProductSnapshot = (props) => {
+  const { itemImageUrl, itemName, itemPrice } = props.itemData;
+  const refactoredPrice = (itemPrice / 100).toFixed(2);
 
   return (
     <div className="snapshot">
@@ -9,11 +11,11 @@ const SingleProductSnapshot = (props) => {
         width="175"
         height="200"
         id="snapshotImage"
-        src={props.itemData.itemImageUrl}
+        src={itemImageUrl}
       />
       <div className="itemDescription">
-        <p>{props.itemData.itemName}</p>
-        <p>$ {props.itemData.itemPrice}</p>
+        <p>{itemName}</p>
+        <p>$ {refactoredPrice}</p>
       </div>
     </div>
   );
