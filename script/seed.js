@@ -589,126 +589,126 @@ async function seed() {
       itemImageUrl:
         "https://images-na.ssl-images-amazon.com/images/I/61hxlW+vz7L.jpg",
     }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
-    // InventoryItem.create({
-    //   itemName: "",
-    //   itemDescription:
-    //     "",
-    //   itemPrice: 0,
-    //   itemImageUrl:
-    //     "",
-    // }),
+    InventoryItem.create({
+      itemName: "The Fountainhead by Ayn Rand",
+      itemDescription:
+        "The Fountainhead is a 1943 novel by Russian-American author Ayn Rand, her first major literary success. The novel's protagonist, Howard Roark, is an intransigent young architect, who battles against conventional standards and refuses to compromise with an architectural establishment unwilling to accept innovation.",
+      itemPrice: 7.64,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91yszMADa7L.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Jude the Obscure by Thomas Hardy",
+      itemDescription:
+        "Jude the Obscure is a novel by Thomas Hardy, which began as a magazine serial in December 1894 and was first published in book form in 1895. It is Hardy's last completed novel. The protagonist, Jude Fawley, is a working-class young man; he is a stonemason who dreams of becoming a scholar.",
+      itemPrice: 9.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/71NlZzEIUEL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Their Eyes Were Watching God by Zora Neale Hurston",
+      itemDescription:
+        "Their Eyes Were Watching God is a 1937 novel by American writer Zora Neale Hurston. It is considered a classic of the Harlem Renaissance, and Hurston's best known work.",
+      itemPrice: 15.49,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91qvx7zE7YL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Finnegans Wake by James Joyce",
+      itemDescription:
+        "Finnegans Wake is a novel by Irish writer James Joyce. It has been called \"a work of fiction which combines a body of fables ... with the work of analysis and deconstruction\". It is significant for its experimental style and reputation as one of the most difficult works in the Western canon.",
+      itemPrice: 20.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/A1wIMapmpoL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Women in Love by D.H. Lawrence",
+      itemDescription:
+        "Women in Love is a novel by English author D. H. Lawrence. It is a sequel to his earlier novel The Rainbow, and follows the continuing loves and lives of the Brangwen sisters, Gudrun and Ursula. Gudrun Brangwen, an artist, pursues a destructive relationship with Gerald Crich, an industrialist.",
+      itemPrice: 0,
+      itemImageUrl:
+        "",
+    }),
+    InventoryItem.create({
+      itemName: "The Secret Garden by Frances Hodgson Burnett",
+      itemDescription:
+        "The Secret Garden is a novel by Frances Hodgson Burnett first published in book form in 1911, after serialisation in The American Magazine. Set in England, it is one of Burnett's most popular novels and seen as a classic of English children's literature. Several stage and film adaptations have been made.",
+      itemPrice: 18.95,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91qOXqI3aQL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Gulliver's Travels by Jonathan Swift",
+      itemDescription:
+        "Gulliver's Travels, or Travels into Several Remote Nations of the World. In Four Parts. By Lemuel Gulliver, First a Surgeon, and then a Captain of Several Ships is a 1726 prose satire by the Irish writer and clergyman Jonathan Swift, satirising both human nature and the \"travellers' tales\" literary subgenre.",
+      itemPrice: 14.95,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/813YyI2mdmL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Blood Meridian by Cormac McCarthy",
+      itemDescription:
+        "Blood Meridian or The Evening Redness in the West is a 1985 epic novel by American author Cormac McCarthy, classified under the Western, or sometimes the anti-Western, genre. McCarthy's fifth book, it was published by Random House.",
+      itemPrice: 9.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/A1l6F+A98ZL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "Herzog by Saul Bellow",
+      itemDescription:
+        "Herzog is a 1964 novel by Saul Bellow, composed in part of letters from the protagonist Moses E. Herzog. It won the U.S. National Book Award for Fiction and the Prix International. In 2005, Time magazine named it one of the 100 best novels in the English language since Time's founding in 1923.",
+      itemPrice: 65.67,
+      itemImageUrl:
+        "https://m.media-amazon.com/images/I/61llC0iw02L._AC_SY679_.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Prime of Miss Jean Brody by Muriel Spark",
+      itemDescription:
+        "The Prime of Miss Jean Brodie is a novel by Muriel Spark, the best known of her works. It was first published in The New Yorker magazine and was published as a book by Macmillan in 1961.",
+      itemPrice: 11.69,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/710PjPr01wL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Crying of Lot 49 by Thomas Pynchon",
+      itemDescription:
+        "The Crying of Lot 49 is a novel written by American author Thomas Pynchon and published in 1966. The shortest of Pynchon's novels, the plot follows Oedipa Maas, a young Californian woman, who begins to embrace a conspiracy theory as she possibly unearths a centuries-old conflict between two mail distribution companies; one of these companies, Thurn and Taxis, actually existed (1806–1867) and was the first private firm to distribute postal mail. Like most of Pynchon's output, Lot 49 is often described as postmodernist literature. Time included the novel in its \"TIME 100 Best English-Language Novels from 1923 to 2005\".",
+      itemPrice: 9.49,
+      itemImageUrl:
+        "https://m.media-amazon.com/images/I/51wPIcH+uTL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Time Traveler's Wife by Audrey Niffennegger",
+      itemDescription:
+        "The Time Traveler's Wife is the debut novel by the American author Audrey Niffenegger, published in 2003.",
+      itemPrice: 13.79,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/817iFfLhJ+L.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Horse Whisperer by Nicholas Evans",
+      itemDescription:
+        "The Horse Whisperer is a 1995 novel by English author Nicholas Evans. The book was his debut novel, and gained significant success, becoming the 10th best selling novel in the United States in 1995, selling over 15 million copies. This also makes it one of the best-selling books of all time.",
+      itemPrice: 9.99,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91u7OTaWzEL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "The Charterhouse of Parma by Stendhal",
+      itemDescription:
+        "The Charterhouse of Parma is a novel by Stendhal published in 1839. Telling the story of an Italian nobleman in the Napoleonic era and later, it was admired by Balzac, Tolstoy, André Gide, di Lampedusa and Henry James. It was inspired by an inauthentic Italian account of the dissolute youth of Alessandro Farnese.",
+      itemPrice: 12.95,
+      itemImageUrl:
+        "https://m.media-amazon.com/images/I/513+vYfLpPL.jpg",
+    }),
+    InventoryItem.create({
+      itemName: "A Christmas Carol by Charles Dickens",
+      itemDescription:
+        "A Christmas Carol. In Prose. Being a Ghost Story of Christmas, commonly known as A Christmas Carol, is a novella by Charles Dickens, first published in London by Chapman & Hall in 1843 and illustrated by John Leech.",
+      itemPrice: 18.69,
+      itemImageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/91r7kYxAAyL.jpg",
+    }),
     // InventoryItem.create({
     //   itemName: "",
     //   itemDescription:
