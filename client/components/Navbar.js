@@ -10,8 +10,8 @@ const Navbar = () => {
   });
 
   const username = useSelector((state) => {
-    return state.auth.username
-  })
+    return state.auth.username;
+  });
 
   const dispatch = useDispatch();
   const handleClick = () => {
@@ -19,7 +19,11 @@ const Navbar = () => {
   };
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
-  const adminUserPortalLink = isAdmin && <Link to='/users' className="admin-User-Portal-Link">Admin Portal</Link>
+  const adminUserPortalLink = isAdmin && (
+    <Link to="/users" className="admin-User-Portal-Link">
+      Admin Portal
+    </Link>
+  );
 
   return (
     <div>
@@ -28,7 +32,7 @@ const Navbar = () => {
           <>
             {/* The navbar will show these links after you log in */}
             <Link to="/home" className="navbar-link home">
-              Grace Shopper
+              Objectivley Better Books
             </Link>
             <p className="welcome-user">Welcome {username}</p>
             {adminUserPortalLink}
@@ -40,7 +44,7 @@ const Navbar = () => {
           <>
             {/* The navbar will show these links before you log in */}
             <Link to="/home" className="navbar-link home">
-              Grace Shopper
+              Objectivley Better Books
             </Link>
             <Link to="/login" className="navbar-link">
               Login
@@ -51,7 +55,7 @@ const Navbar = () => {
           </>
         )}
         <Link to="/cart" className="navbar-link">
-          Cart  🛒
+          Cart 🛒
         </Link>
       </nav>
     </div>
