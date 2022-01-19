@@ -44,7 +44,11 @@ export const me = () => async (dispatch) => {
         let [productInBackEndCart] = backEndCart.filter(
           (backEndProduct) => backEndProduct.id === frontEndProduct.id
         );
-        let newQuantity = productInBackEndCart.qty + frontEndProduct.qty;
+        let backEndQty = 0;
+        if (productInBackEndCart) {
+          backEndQty = productInBackEndCart.qty;
+        }
+        let newQuantity = backEndQty + frontEndProduct.qty;
         await dispatch(goAddShoppingItem(frontEndProduct, id, newQuantity));
       });
     }
