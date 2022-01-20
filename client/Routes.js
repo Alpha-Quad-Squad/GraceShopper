@@ -25,7 +25,7 @@ const Routes = () => {
   });
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
-  const adminUserPortal = isAdmin && (
+  const adminUserPortal = (
     <Switch>
       <Route path="/home" component={Home} />
       <Route exact path="/products" component={ManyProducts} />
