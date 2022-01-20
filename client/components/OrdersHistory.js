@@ -34,12 +34,12 @@ const OrdersHistory = () => {
                             return (
                                 <table key={item.id}>
                                     <tbody>
-                                <tr  className="products-div">
-                                    <td>{item.itemName}</td>
-                                    <td>Price = $ {item.itemPrice}</td>
-                                    <td>Quantity = {item.shoppingItem.quantity}</td>
-                                </tr>
-                                </tbody>
+                                        <tr className="products-div">
+                                            <td>{item.itemName}</td>
+                                            <td>Price = $ {item.itemPrice}</td>
+                                            <td>Quantity = {item.shoppingItem.quantity}</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             )
                         })}</td>
