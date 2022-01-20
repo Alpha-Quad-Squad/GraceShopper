@@ -61,9 +61,11 @@
     text-align: center;
     border-radius: 10px;
     border: 1px solid #ababab;
+    width: 100%;
   }
 
   .cancel-modal-button:hover {
+    background-color: #f56a1f;
     opacity: 0.8
   }
 

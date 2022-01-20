@@ -30,3 +30,19 @@ label {
   margin: 1em;
   display: inline-block;
 } */
+
+.products-div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.items-cells {
+  width:0.5%
+}
+
+.allorders {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}

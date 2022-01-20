@@ -30,6 +30,7 @@
   }
 
   .submit-button:hover {
+    background-color: rgb(40, 156, 191);
     opacity: 0.8;
   }
 
