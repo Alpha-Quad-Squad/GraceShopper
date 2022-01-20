@@ -1,5 +1,5 @@
 import React from "react";
-import './singleProductSnapshot.css'
+import "./singleProductSnapshot.css";
 
 const SingleProductSnapshot = (props) => {
   const { itemImageUrl, itemName, itemPrice } = props.itemData;
@@ -7,12 +7,7 @@ const SingleProductSnapshot = (props) => {
 
   return (
     <div className="snapshot">
-      <img
-        width="175"
-        height="200"
-        id="snapshotImage"
-        src={itemImageUrl}
-      />
+      <img height="200" id="snapshotImage" src={itemImageUrl} />
       <div className="itemDescription">
         <p>{itemName}</p>
         <p>$ {refactoredPrice}</p>

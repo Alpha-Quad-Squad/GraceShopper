@@ -19,7 +19,11 @@ const Navbar = () => {
   };
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
-  const adminUserPortalLink = isAdmin && <Link to='/admin' className="admin-User-Portal-Link">Admin Portal</Link>
+  const adminUserPortalLink = isAdmin && (
+    <Link to="/admin" className="admin-User-Portal-Link">
+      Admin Portal
+    </Link>
+  );
 
   return (
     <div>
@@ -28,7 +32,7 @@ const Navbar = () => {
           <>
             {/* The navbar will show these links after you log in */}
             <Link to="/home" className="navbar-link home">
-              Objectivley Better Books
+              Objectively Better Books
             </Link>
             <p className="welcome-user">Welcome {username}</p>
             {adminUserPortalLink}
@@ -40,7 +44,7 @@ const Navbar = () => {
           <>
             {/* The navbar will show these links before you log in */}
             <Link to="/home" className="navbar-link home">
-              Objectivley Better Books
+              Objectively Better Books
             </Link>
             <Link to="/login" className="navbar-link">
               Login
