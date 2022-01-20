@@ -14,8 +14,6 @@ const OrdersHistory = () => {
         dispatch(getOrdersHistory())
     }, [])
 
-    console.log(allPurchases)
-
     const purchasesList = allPurchases.map((singlePurchase) => {
         return (
             <table key={singlePurchase.id} style={{ width: '100%' }}>
