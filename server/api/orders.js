@@ -24,14 +24,10 @@ module.exports = router;
 
 router.get("/", async (req, res, next) => {
     try {
-      
+
       const allorders = await Purchase.findAll({
         include: InventoryItem,
       })
-    //   console.log(allorders)
-      // reformat the purchase to be like a frontend cart.
-    //   let frontEndCart = makeFrontEndCart(allorders);
-      //then send it to the front end.
       res.json(allorders);
     } catch (err) {
       next(err);

@@ -19,7 +19,6 @@ export const getOrdersHistory = () => {
                     authorization: token,
                 },
             });
-            // console.log(orders)
             dispatch(setHistory(orders))
         } catch (err) {
             console.log(err)
