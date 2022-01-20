@@ -26,11 +26,11 @@ const Routes = () => {
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const adminUserPortal = isAdmin && (
-    <>
-    <Route exact path="/users" component={AllUsers} />
-    <Route exact path="/admin" component={Admin} />
-    <Route exact path="/OrdersHistory" component={OrdersHistory} />
-    </>
+    <Switch>
+      <Route exact path="/users" component={AllUsers} />
+      <Route exact path="/admin" component={Admin} />
+      <Route exact path="/OrdersHistory" component={OrdersHistory} />
+    </Switch>
   );
 
   return (
