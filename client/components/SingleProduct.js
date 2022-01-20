@@ -84,7 +84,10 @@ const SingleProduct = (props) => {
             <p className="singleProductDescription">
               {product.itemDescription}
             </p>
-            <p className="singleProductPrice">$ {product.itemPrice}</p>
+            <p className="singleProductPrice">
+              ${(product.itemPrice / 100).toFixed(2)}
+            </p>
+            {quantity ? <p>Quantity in Cart: {quantity}</p> : <p></p>}
             <button className="addButton" onClick={addToCart}>
               Add to Cart
             </button>
