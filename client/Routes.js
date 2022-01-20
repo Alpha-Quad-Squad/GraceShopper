@@ -12,7 +12,7 @@ import Checkout from "./components/Checkout";
 import PostCheckoutRedirect from "./components/PostCheckoutRedirect";
 import AllUsers from "./components/AllUsers";
 import Admin from "./components/Admin";
-import OrdersHistory from "./components/OrdersHistory"
+import OrdersHistory from "./components/OrdersHistory";
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Routes = () => {
   });
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
-  const adminUserPortal = isAdmin && (
+  const adminUserPortal = (
     <Switch>
       <Route path="/home" component={Home} />
       <Route exact path="/products" component={ManyProducts} />
@@ -46,22 +46,28 @@ const Routes = () => {
 
   return (
     <div>
-      {isLoggedIn ?
-        isAdmin ? adminUserPortal :
-      (
-        <Switch>
-          <Route path="/home" component={Home} />
-          <Route exact path="/products" component={ManyProducts} />
-          <Route exact path="/products/:productId" component={SingleProduct} />
-          <Route exact path="/cart" component={Cart} />
-          <Route exact path="/checkout" component={Checkout} />
-          <Route
-            exact
-            path="/postCheckoutRedirect"
-            component={PostCheckoutRedirect}
-          />
-          <Redirect to="/home" />
-        </Switch>
+      {isLoggedIn ? (
+        isAdmin ? (
+          adminUserPortal
+        ) : (
+          <Switch>
+            <Route path="/home" component={Home} />
+            <Route exact path="/products" component={ManyProducts} />
+            <Route
+              exact
+              path="/products/:productId"
+              component={SingleProduct}
+            />
+            <Route exact path="/cart" component={Cart} />
+            <Route exact path="/checkout" component={Checkout} />
+            <Route
+              exact
+              path="/postCheckoutRedirect"
+              component={PostCheckoutRedirect}
+            />
+            <Redirect to="/home" />
+          </Switch>
+        )
       ) : (
         <Switch>
           <Route path="/home" component={Home} />
