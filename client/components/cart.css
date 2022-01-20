@@ -55,6 +55,7 @@
 }
 
 .increment-decrement-btns > button:hover {
+    background-color: rgb(40, 156, 191);
     opacity: 0.8;
 }
 
@@ -70,6 +71,7 @@
 }
 
 .cart-remove-item-btn:hover {
+    background-color: #f56a1f;
     opacity: 0.8;
 }
 
@@ -95,6 +97,7 @@
 }
 
 .proceed-check-btn:hover {
+    background-color: rgb(40, 156, 191);
     opacity: 0.8;
 }
 
@@ -110,6 +113,7 @@
 }
 
 .empty-cart-btn:hover {
+    background-color: #f56a1f;
     opacity: 0.8;
 }
 

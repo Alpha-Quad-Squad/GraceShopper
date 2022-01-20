@@ -11,6 +11,8 @@ import ManyProducts from "./components/ManyProducts";
 import Checkout from "./components/Checkout";
 import PostCheckoutRedirect from "./components/PostCheckoutRedirect";
 import AllUsers from "./components/AllUsers";
+import Admin from "./components/Admin";
+import OrdersHistory from "./components/OrdersHistory"
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -24,7 +26,11 @@ const Routes = () => {
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const adminUserPortal = isAdmin && (
+    <>
     <Route exact path="/users" component={AllUsers} />
+    <Route exact path="/admin" component={Admin} />
+    <Route exact path="/OrdersHistory" component={OrdersHistory} />
+    </>
   );
 
   return (
