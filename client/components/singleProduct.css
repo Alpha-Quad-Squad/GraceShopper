@@ -4,8 +4,8 @@
   padding: 10px;
 }
 
-.singleProductTitle {
-}
+/* .singleProductTitle {
+} */
 .singleProductImage {
   width: 20%;
   display: block;
@@ -18,28 +18,28 @@
 .singleProductImageAndDescription {
   display: flex;
 }
-.singleProductDescription {
-}
+/* .singleProductDescription {
+} */
 
 .singleProductDetails {
   margin: 20px;
   width: 75%;
 }
-.singleProductPrice {
-}
+/* .singleProductPrice {
+} */
 
 .addButton {
   background-color: rgb(40, 156, 191);
   font-size: 18px;
   color: white;
-  padding:4%;
+  padding: 10px;
   border: none;
   text-align: center;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 15px;
   border: 1px solid #ababab;
-  width: 20%;
-  height: 30%;
+  width: 250px;
+  height: 75px;
   margin-top: 5%;
 }
 

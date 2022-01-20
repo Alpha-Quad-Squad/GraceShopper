@@ -26,18 +26,32 @@ const Routes = () => {
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const adminUserPortal = isAdmin && (
-    <>
-    <Route exact path="/users" component={AllUsers} />
-    <Route exact path="/admin" component={Admin} />
-    <Route exact path="/OrdersHistory" component={OrdersHistory} />
-    </>
+    <Switch>
+      <Route path="/home" component={Home} />
+      <Route exact path="/products" component={ManyProducts} />
+      <Route exact path="/products/:productId" component={SingleProduct} />
+      <Route exact path="/cart" component={Cart} />
+      <Route exact path="/checkout" component={Checkout} />
+      <Route
+        exact
+        path="/postCheckoutRedirect"
+        component={PostCheckoutRedirect}
+      />
+      <Route exact path="/users" component={AllUsers} />
+      <Route exact path="/admin" component={Admin} />
+      <Route exact path="/OrdersHistory" component={OrdersHistory} />
+      <Redirect to="/home" />
+    </Switch>
   );
 
   return (
     <div>
-      {isLoggedIn ? (
+      {isLoggedIn ?
+        isAdmin ? adminUserPortal :
+      (
         <Switch>
           <Route path="/home" component={Home} />
+          <Route exact path="/products" component={ManyProducts} />
           <Route exact path="/products/:productId" component={SingleProduct} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/checkout" component={Checkout} />
@@ -46,8 +60,6 @@ const Routes = () => {
             path="/postCheckoutRedirect"
             component={PostCheckoutRedirect}
           />
-          <Route exact path="/products" component={ManyProducts} />
-          {adminUserPortal}
           <Redirect to="/home" />
         </Switch>
       ) : (
